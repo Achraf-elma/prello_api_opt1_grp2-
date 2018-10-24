@@ -8,7 +8,6 @@ mongoose.connect(process.env.MONGO_URL_PRELLO_2018/*'mongodb://localhost:27017'*
   .then(() => console.log('Connection to database succesful'))
   .catch((err) => {
       console.error(err);
-      console.log(process.env.MONGO_URL);
     });
 
 /*mongoClient.connect('mongodb://localhost:27017', function(err, client){
