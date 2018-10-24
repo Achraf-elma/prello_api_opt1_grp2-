@@ -1,0 +1,25 @@
+{
+  "name": "prello_api_opt1_grp2-",
+  "version": "1.0.0",
+  "description": "API for prello",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/routes/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hamelina/prello_api.git"
+  },
+  "author": "IG5-2018 option 1 group 2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hamelina/prello_api/issues"
+  },
+  "homepage": "https://github.com/Hamelina/prello_api#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.3.6"
+  }
+}
