@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 
 //TODO: change the URL to env variables
+console.log(process.env.MONGO_URL);
 mongoose.connect(process.env.MONGO_URL/*'mongodb://localhost:27017'*/, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => console.log('Connection to database succesful'))
   .catch((err) => {
