@@ -1,6 +1,4 @@
-
 # Logs
-node_modules
 logs
 *.log
 npm-debug.log*
@@ -82,3 +80,14 @@ yarn-error.log*
 # next.js build output
 .next
 
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
