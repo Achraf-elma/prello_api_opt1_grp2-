@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var TeamSchema = mongoose.Schema({
+const teamSchema = mongoose.Schema({
     displayName: String,
     desc: String,
     idBoards: [String],
@@ -10,4 +10,4 @@ var TeamSchema = mongoose.Schema({
     irAdmins: [String],
 });
 
-module.exports = mongoose.model('Team', TeamSchema)
+module.exports = mongoose.model('Team', teamSchema)
