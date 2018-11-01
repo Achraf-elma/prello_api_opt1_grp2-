@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var UserSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     fullName: String,
     email: String,
     bio: String,
@@ -11,4 +11,4 @@ var UserSchema = mongoose.Schema({
     notifications: [String],
 });
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', userSchema)

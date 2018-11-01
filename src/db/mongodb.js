@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
-//var mongoClient = require('mongodb').MongoClient;
 
 
-//TODO: change the URL to env variables
-console.log(process.env.MONGO_URL_PRELLO_2018);
+/**
+ * Establish connection to MongoDB
+ */
 mongoose.connect(/*process.env.MONGO_URL_PRELLO_2018*/'mongodb://localhost:27017', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
-  .then(() => console.log('Connection to database succesful'))
+  .then(() => console.log('Successfully connected to MongoDB database.'))
   .catch((err) => {
       console.error(err);
+      console.log('Something is wrong with the connection to MongoDB. Please make sure your Mongo container is running.')
     });
-
-/*mongoClient.connect('mongodb://localhost:27017', function(err, client){
-    console.log("Connected succedfully");
-})*/
 
 module.exports = mongoose;
