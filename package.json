@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/Hamelina/prello_api#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "jwt-simple": "^0.5.5",
     "mongo": "^0.1.0",
     "mongoose": "^5.3.6"
   }
