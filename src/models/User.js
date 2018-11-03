@@ -9,6 +9,8 @@ const userSchema = mongoose.Schema({
     loginType: String,
     idBoards: [String],
     notifications: [String],
+},
+{
+    timestamps: true
 });
-
 module.exports = mongoose.model('User', userSchema)
