@@ -2,10 +2,17 @@ const mongoose = require('mongoose');
 
 const cardSchema = mongoose.Schema({
     description: String,
-    name: {type: String, required: true},
+    name: {
+        type: String, 
+        required: true
+    },
     dueDate: Date,
     //whether the card has be checked as "done" or not
-    dueComplete: { type: Boolean, required: true, default: false},
+    dueComplete: { 
+        type: Boolean, 
+        required: true, 
+        default: false
+    },
     idBoard: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Board'
@@ -26,8 +33,15 @@ const cardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Label'
     }],
-    isClosed: { type: Boolean, required: true, default: false},
+    isClosed: { 
+        type: Boolean, 
+        required: true, 
+        default: false
+    },
     position: Number
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('Card', cardSchema)
