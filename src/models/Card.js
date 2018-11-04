@@ -13,14 +13,14 @@ const cardSchema = mongoose.Schema({
         required: true, 
         default: false
     },
-    idBoard: [{
+    idBoard: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Board'
-    }],
-    idList: [{
+    },
+    idList: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'List'
-    }],
+    },
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
