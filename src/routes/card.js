@@ -12,6 +12,14 @@ router.get("/{id}", (req, res) => {
 });
 
 /**
+ * Get a card given its id
+ */
+router.get("/all", (req, res) => {
+    res.send(cardController.findAll);
+});
+router.
+
+/**
  * Get a specific property of a card given its id
  */
 router.get("/{id}/{field}", (req, res) => {
@@ -105,7 +113,7 @@ router.put("/{idCard}/checklist/{idChecklist}/checkItem/{idCheckItem}", (req, re
  * Create a new card
  */
 router.post("/", (req, res) => {
-    res.send("create new card");
+    res.send(cardController.create(req));
 });
 
 /**
