@@ -1,4 +1,4 @@
-const cardModel = require('../models');
+const Card = require('../models/Card');
 const requestError = require('../util/errorHandler');
 //TODO:
 /**
@@ -22,19 +22,14 @@ const requestError = require('../util/errorHandler');
 /**
  * create card : just to test
  */
-const cardControler = {
+const cardController = {
     create: function (data)  {
         try{
             const card = new Card(data.description,
                 data.name,
                 data.dueDate,
-                data.idBoard,
-                data.idList,
-                data.idMembers,
-                data.idCheckLists,
-                data.labels,
-                data.position) ;
-            card.save;
+                data.position);
+            card.save();
             return card;
         }
         catch (err) {

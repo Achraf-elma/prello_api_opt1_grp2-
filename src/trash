@@ -50,3 +50,30 @@ app.get('/', function(request, res){
 
 });
    // res.end('Hello World')
+
+
+
+
+
+
+//Card creation 
+/*const data = {
+    "dueComplete": false,
+    "isClosed": false,
+    "_id": "5bdb0ae78f8b4ad5c0298197",
+    "description": "Implement features",
+    "name": "Implement API",
+    "dueDate": "2018-11-01T14:17:11.472Z",
+    "position": 0.3,
+    "__v": 0
+}*/
+
+try{
+    const card = new Card(data);
+    card.save();
+    console.log(card);
+}
+catch (err) {
+    //check if error of field or server error
+    console.log(err);
+}

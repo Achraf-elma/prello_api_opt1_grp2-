@@ -112,3 +112,5 @@ router.post("/{id}/archiveAllCards", (req, res) => {
 router.post("/{id}/moveAllCards", (req, res) => {
     res.send("Move all cards of a list");
 });
+
+module.exports = router;

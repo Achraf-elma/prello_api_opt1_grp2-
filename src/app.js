@@ -18,7 +18,7 @@ app.set('port', process.env.DOKKU_DOCKERFILE_PORTS||8080);
 /**
  * API requests 
  */
-app.use("/api", routes);
+app.use('/api', routes);
 
 //TODO:
 /**
