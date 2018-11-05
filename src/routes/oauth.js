@@ -51,14 +51,15 @@ router.delete("/", (req, res) => (
 /**
  * Sign up
  */
-router.put("/", (req, res) => (
+router.put("/", (req, res) => console.log(req.body) || (
   User.findOne({email: req.body.email})
-  .then( user => user ? Promise.reject(USER_EXISTS) : {
-    fullName: req.body.fullName || Promise.reject(INCOMPLETE_FORM),
-    email: req.body.email || Promise.reject(INCOMPLETE_FORM),
-  })
+  .then(user => user && Promise.reject(USER_EXISTS))
+  .then(nill => req.body.fullName && req.body.email && req.body.password ? {
+    fullName: req.body.fullName,
+    email: req.body.email,
+  } : Promise.reject(INCOMPLETE_FORM))
   .then( userData => new User(userData))
-  .then( user => user.setPassword(req.body.password || Promise.reject(INCOMPLETE_FORM)))
+  .then(user => user.setPassword(req.body.password))
   .then( user => user.save())
   .then( user => res.status(200).json(tokenize(user)))
   .catch( error => error === USER_EXISTS ? res.sendStatus(401) : Promise.reject(error))
