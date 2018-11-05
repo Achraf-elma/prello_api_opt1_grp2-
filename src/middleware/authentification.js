@@ -14,6 +14,7 @@ const EXPIRED = "Token reach expiration date";
 module.exports = {
   "tokenize": (user) => {
     let lightUser = {
+      idUser: user._id,
       fullname: user.fullname,
       email: user.email,
       memberType: user.memberType,
