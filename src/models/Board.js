@@ -8,6 +8,7 @@ const boardSchema = mongoose.Schema({
     },
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
+        default: [],
         ref: 'User'
     }],
     idTeams: [{
@@ -33,5 +34,13 @@ const boardSchema = mongoose.Schema({
 {
     timestamps: true
 });
+
+boardSchema.methods.isUserAllowed = function(idUser){
+    return (
+        this.isPublic ||
+        this.idMembers.includes(idUser) ||
+        this.owners.includes(idUser)
+    );
+};
 
 module.exports = mongoose.model('Board', boardSchema);
