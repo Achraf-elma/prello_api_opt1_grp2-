@@ -1,6 +1,5 @@
 // Modules
 const router = require("express").Router();
-const crypto = require("crypto");
 const jwt = require("jwt-simple");
 const {tokenize, untokenize} = require("../middleware/authentification");
 

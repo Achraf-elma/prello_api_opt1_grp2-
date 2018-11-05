@@ -17,7 +17,7 @@ module.exports = {
       fullname: user.fullname,
       email: user.email,
       memberType: user.memberType,
-      expires: Date.now() + TOKEN_PERIME,
+      expires: TOKEN_PERIME ? Date.now() + TOKEN_PERIME : Date.now() * Date.now() ,
     };
     return ({
         accessToken: jwt.encode(lightUser, API_SCECRET, "HS256"),
