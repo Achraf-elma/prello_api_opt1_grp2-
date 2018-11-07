@@ -16,7 +16,7 @@ const app = express();
 /**
  * Configure Express server
  */
-app.set('port', process.env.DOKKU_DOCKERFILE_PORTS||8080);
+app.set('port', process.env.DOKKU_DOCKERFILE_PORTS||3000);
 
 /**
  * API requests 

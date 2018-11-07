@@ -11,7 +11,7 @@ WORKDIR /opt/prello_api_opt1_grp2
 
 COPY . /opt/prello_api_opt1_grp2/
 
-EXPOSE 8080 
+EXPOSE 3000
 
 #RUN docker compose up
 #RUN docker compose run
