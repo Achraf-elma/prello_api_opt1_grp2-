@@ -15,11 +15,11 @@ const boardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Team'
     }],
-    isPublic: [{
+    isPublic: {
         type: Boolean,
         required: true,
         default: true
-    }],
+    },
     owners: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true, 

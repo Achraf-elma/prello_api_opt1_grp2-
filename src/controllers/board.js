@@ -1,46 +1,122 @@
 const Board = require('../models/Board');
 
 const IS_PRIVATE = "user cannot see target board";
+const NOT_OWNER = "Only board owner is allowed to do that";
 const NOT_FOUND = "No board match given id";
+const INCOMPLETE_BODY = "Informations sent were not enough";
 
 module.exports = {
   IS_PRIVATE,
+  NOT_OWNER,
   NOT_FOUND,
-
+  INCOMPLETE_BODY,
   /**
    * @desc get one board
    * @type {Promise}
-   * @param {Object} queryIds, {idBoard}
+   * @param {Object} query, {idBoard}
    * @param {Object} user, user information {idUser}
    * @throws IS_PRIVATE
    * @throws NOT_FOUND
    * @returns board
    */
-  findOne: (queryIds, user) => (
+  findOne: (query, user) => (
     Board.findOne({
-      _id: queryIds.idBoard,
+      _id: query.idBoard,
     })
     // .then( a => console.log(a))
     .then( board => board ? board : Promise.reject(NOT_FOUND))
     .then( board => board.isUserAllowed( user && user.idUser ) ? board : Promise.reject( IS_PRIVATE ))
-  )
-}
-
-//TOD:
-/**
- * find board by date of last update
- */
-
- /**
-  * find lists of a board
-  */
+  ),
+  /**
+   * @desc upsert one board
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws NOT_OWNER
+   * @throws NOT_FOUND
+   * @returns board
+   */
+  upsert:(query, user) => (
+    Board.findById(query.idBoard)
+      .then(board => board ? board : Promise.reject(NOT_FOUND))
+      .then(board => board.owners.includes(user && user.idUser) ? board.save(query.updatedBoard) : Promise.reject(NOT_OWNER))
+      .catch(error => error === NOT_FOUND ? (new Board(query.updatedBoard)).save() : Promise.reject(error))
+  ),
 
   /**
-   * find by users
+   * @desc create a new board
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws IS_PRIVATE
+   * @throws NOT_FOUND
+   * @returns board
    */
+  create:(query, user) => (
+    (new Board(query.createdBoard)).save()
+  ),
 
-   /**
-    * find public board 
-    */
+  /**
+   * @desc close a board
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws NOT_OWNER
+   * @throws NOT_FOUND
+   * @returns board
+   */
+  disable:(query, user) => (
+    Board.findById(query.idBoard)
+    .then(board => board ? board : Promise.reject(NOT_FOUND))
+    .then(board => board.owners.includes(user && user.idUser) ? board.save({ isClosed: true }) : Promise.reject(NOT_OWNER))
+  ),
 
-    
+  /**
+   * @desc get board members
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws IS_PRIVATE
+   * @throws NOT_FOUND
+   * @returns board
+   */
+  findMembers: (query, user) => (
+    Board.findById(query.idBoard)
+      .populate('idMembers')
+      .populate('owners')
+      .then(board => board ? board : Promise.reject(NOT_FOUND))
+      .then(board => board.isUserAllowed(user && user.idUser) ? [].concat([], board.idMembers, board.owners) : Promise.reject(IS_PRIVATE))
+  ),
+  /**
+   * @desc add member to the board
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws NOT_OWNER
+   * @throws NOT_FOUND
+   * @returns board
+   */
+  addMember: (query, user) => (
+    Board.findById(query.idBoard)
+    .then(board => board ? board : Promise.reject(NOT_FOUND))
+    .then(board => board.owners.includes(user && user.idUser) ? board.save({idMembers: [...board.idMembers, query.idMember]}) : Promise.reject(NOT_OWNER))
+  ),
+  /**
+   * @desc remove member from the board
+   * @type {Promise}
+   * @param {Object} query, {idBoard}
+   * @param {Object} user, user information {idUser}
+   * @throws NOT_OWNER
+   * @throws NOT_FOUND
+   * @returns board
+   */
+  removeMember: (query, user) => (
+    Board.findById(query.idBoard)
+      .then(board => board ? board : Promise.reject(NOT_FOUND))
+      .then(board => (
+        board.owners.includes(user && user.idUser) ?
+        board.save({ idMembers: board.idMembers.filter( idMember => idMember != query.idMember)}) :
+        Promise.reject(NOT_OWNER)
+      ))
+  )
+}

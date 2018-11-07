@@ -7,6 +7,11 @@ const actionSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
+    idBoard: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Board',
+        required: true,
+    },
     //The data involved for an action: for instance --> card, list, board
     data: [{
         type: Object,
