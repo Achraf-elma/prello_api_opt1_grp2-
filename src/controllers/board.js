@@ -27,6 +27,9 @@ module.exports = {
     .then( board => board ? board : Promise.reject(NOT_FOUND))
     .then( board => board.isUserAllowed( user && user.idUser ) ? board : Promise.reject( IS_PRIVATE ))
   ),
+  /*findByUser: (user) => (
+    Board.
+  )*/
   /**
    * @desc upsert one board
    * @type {Promise}

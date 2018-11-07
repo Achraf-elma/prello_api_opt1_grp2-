@@ -108,6 +108,23 @@ router.get('/:idBoard/lists', (req, res) => {
 });
 
 /**
+ * @desc get all boards of a user,
+ * @param idUser
+ * @code 401 if board is private and user logged out
+ * @code 403 if board is private and user isn't member
+ * @code 404 if board doesn't exist
+ */
+/*router.get('/', (req, res) => {
+    let user = req.user;
+    boardController.findByUser({ user }, boards)
+      .then(boards => res.json(boards))
+      .catch(error => error === listController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === listController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === listController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+  });*/
+
+/**
  * @desc get members of a board,
  * @param idBoard
  * @code 401 if board is private and user logged out

@@ -4,40 +4,8 @@ const listController = require("../controllers/list")
 
 /*************************** GET ***************************/
 
-/**
-* Get a List given its id
-*/
-router.get("/{id}", (req, res) => {
-    res.send("ID");
-});
 
-/**
-* Get a specific property of a list given its id
-*/
-router.get("/{id}/{field}", (req, res) => {
-    res.send("id/field");
-});
 
-/**
-* Get the actions carried out on a list given its id
-*/
-router.get("/{id}/actions", (req, res) => {
-    res.send("id/actions");
-});
-
-/**
-* Get the board of a given list
-*/
-router.get("/{id}/board", (req, res) => {
-    res.send("id/board");
-});
-
-/**
-* Get the cards contained in a list given its id 
-*/
-router.get("/{id}/cards", (req, res) => {
-    res.send("id/cards");
-});
 
 /*************************** PUT ***************************/
 
