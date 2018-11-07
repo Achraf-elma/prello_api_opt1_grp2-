@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const listController = require("../controllers/list")
-
+const User = require('../models/User')
 /*************************** GET ***************************/
 
 
@@ -13,8 +13,15 @@ const listController = require("../controllers/list")
 /**
 * Update a list given its id
 */
-router.put("/{id}", (req, res) => {
-    res.send("id");
+router.put("/hello", (req, res) => {
+    User.create(req, function(err, post){
+        if (err) return next(err);
+    });
+    User.find(function (err, users){
+        if (err) return console.error(err);
+        console.log(users);
+        res.send(users)});
+    //res.send("Hello World");
 });
 
 /**
