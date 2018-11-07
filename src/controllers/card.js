@@ -66,6 +66,35 @@ const cardController = {
         .then(board => board.isUserAllowed(user && user.idUser) ? board : Promise.reject(IS_PRIVATE))
         .then(board => Card.find({ idBoard: board._id }))
     ),
+    
+    /**
+     * @desc
+     * @param {boards?, lists?, labels?, duedate?, duecomplete, perpage, page, }
+     */
+    findWithFilters: (query, user) => {
+        let boardPopulate = query.boards && {
+            path: 'idBoard',
+            select: '_id',
+            option: { $or: [
+                    { isPublic: true },
+                    { idMembers: { $contains: user.idUser } },
+                    { owners: { $contains: user.idUser } }
+            ]}
+        };
+
+        return Card.find({$or: [
+            query.boards && { idBoard: { $in: query.boards } },
+            query.lists && { idList: { $in: query.lists } },
+            query.label && { labels: {_id: { $in: query.label } } },
+            query.duedate && { dueDate: { $lt: query.duedate } },
+            query.duecomplete !== null && { dueComplete: query.duecomplete }
+        ].filter( a => a ) }, null, {
+            skip: query.page * query.perpage,
+            limit: query.perpage,
+        })
+        .populate(boardPopulate)
+        .populate({ path: 'idList', select: 'idBoard', populate: boardPopulate })
+    }
     /*,
     findAll: () => { 
         cardModel.find({},function (err, cards){
