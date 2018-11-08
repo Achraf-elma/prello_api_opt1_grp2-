@@ -1,0 +1,534 @@
+{
+    "users":{
+        "_model": "User",
+        "toto": {
+            "fullName": "Toto",
+            "email": "toto@gmail.com",
+            "bio": "Animal lover",
+            "initials": "T.O",
+            "memberType": "admin",
+            "loginType": "OAuth",
+            "hashpass": "dqefrqsgsdh",
+            "saltpass": "cvqsrgeqthq" 
+        },
+        "titi": {
+            "fullName": "Titi",
+            "email": "titi@gmail.com",
+            "bio": "Food lover",
+            "initials": "T.I",
+            "memberType": "User",
+            "loginType": "Prello",
+            "hashpass": "egefadaz",
+            "saltpass": "zrgfzdc"
+        },
+        "tata": {
+            "fullName": "Tata",
+            "email": "tata@gmail.com",
+            "bio": "Sleep lover",
+            "initials": "T.O",
+            "memberType": "User",
+            "loginType": "OAuth",
+            "hashpass": "dzqfa2435",
+            "saltpass": "egqz24254"
+        }
+    },
+    "teams":{
+        "_model": "Team",
+        "t1":{
+            "displayName": "Team toto titi",
+            "desc": "This is the team toto titi, Admin = titi",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idAdmins": [
+                {
+                    "idAdmin": "->users.titi"
+                }
+            ]  
+        },
+        "t2":{
+            "displayName": "Team toto titi",
+            "desc": "This is the team toto titi, Admin = titi",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                }
+            ],
+            "idAdmins": [
+                {
+                    "idAdmin": "->users.toto"
+                }
+            ]
+        }
+    },
+    "notifications":{
+        "_model": "Notification",
+        "not1": {
+            "date": "=new Date(2018, 08, 14)",
+            "user": "->users.toto",
+            "idActions": [
+                    {
+                        "idAction": "->actions.a1"
+                    },
+                    {
+                        "idAction": "->actions.a2"
+                    }
+            ]
+        },
+        "not2": {
+            "date": "=new Date(2016, 08, 14)",
+            "user": "->users.titi",
+            "idActions": [
+                    {
+                        "idAction": "->actions.a3"
+                    },
+                    {
+                        "idAction": "->actions.a1"
+                    }
+            ]
+        },
+        "not3": {
+            "date": "=new Date(2018, 08, 15)",
+            "user": "->users.tata",
+            "idActions": [
+                    {
+                        "idAction": "->actions.a1"
+                    },
+                    {
+                        "idAction": "->actions.a2"
+                    }
+            ]
+        }
+    },
+    "lists":{
+        "_model": "List",
+        "l1":{
+            "name": "To do",
+            "idBoard": "->boards.b1",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l2":{
+            "name": "Doing",
+            "idBoard": "->boards.b1",
+            "isClosed": false,
+            "position": 1
+        },
+        "l3":{
+            "name": "Done",
+            "idBoard": "->boards.b1",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l4":{
+            "name": "To do closed",
+            "idBoard": "->boards.b1",
+            "isClosed": true,
+            "position": 2
+        },
+        "l12":{
+            "name": "To do",
+            "idBoard": "->boards.b2",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l22":{
+            "name": "Doing",
+            "idBoard": "->boards.b2",
+            "isClosed": false,
+            "position": 1
+        },
+        "l32":{
+            "name": "Done",
+            "idBoard": "->boards.b2",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l42":{
+            "name": "To do closed",
+            "idBoard": "->boards.b2",
+            "isClosed": true,
+            "position": 2
+        },
+        "l13":{
+            "name": "To do",
+            "idBoard": "->boards.b3",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l23":{
+            "name": "Doing",
+            "idBoard": "->boards.b3",
+            "isClosed": false,
+            "position": 1
+        },
+        "l33":{
+            "name": "Done",
+            "idBoard": "->boards.b3",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l43":{
+            "name": "To do closed",
+            "idBoard": "->boards.b3",
+            "isClosed": true,
+            "position": 2
+        },
+        "l14":{
+            "name": "To do",
+            "idBoard": "->boards.b4",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l24":{
+            "name": "Doing",
+            "idBoard": "->boards.b4",
+            "isClosed": false,
+            "position": 1
+        },
+        "l34":{
+            "name": "Done",
+            "idBoard": "->boards.b4",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l44":{
+            "name": "To do closed",
+            "idBoard": "->boards.b4",
+            "isClosed": true,
+            "position": 2
+        }
+    },
+    "mailSettings":{
+        "_model": "Notification"
+    },
+    "checkListItems":{
+        "_model": "CheckListItem",
+        "checkListItem1":{
+            "name": "Check list item 1",
+            "isChecked": true
+        },
+        "checkListItem2":{
+            "name": "Check list item 2",
+            "isChecked": false
+        },
+        "checkListItem3":{
+            "name": "Check list item 3",
+            "isChecked": false
+        },
+        "checkListItem4":{
+            "name": "Check list item 4",
+            "isChecked": false
+        }
+    },
+    "checkLists":{
+        "_model": "CheckList",
+        "checkList1": {
+            "name": "Check list 1",
+            "idActiocheckListItems": [
+                {
+                    "idCheckListItem": "->checkListItems.checkListItem1"
+                },
+                {
+                    "idCheckListItem": "->checkListItems.checkListItem2"
+                }
+        ]
+        },
+        "checkList2":{
+            "name": "Check list 2",
+            "idActiocheckListItems": [
+                {
+                    "idCheckListItem": "->checkListItems.checkListItem3"
+                },
+                {
+                    "idCheckListItem": "->checkListItems.checkListItem4"
+                }
+        ]
+        }
+    },
+    "labels":{
+        "_model": "Label",
+        "lab1":{
+            "name": "label 1 of board 1",
+            "color": "green",
+            "idBoard": "->board.b1"
+        },
+        "lab2":{
+            "name": "label 2 of board 1",
+            "color": "yellow",
+            "idBoard": "->board.b1"
+        },
+        "lab12":{
+            "name": "label 1 of board 2",
+            "color":"green",
+            "idBoard": "->board.b2"
+        },
+        "lab22":{
+            "name": "label 2 of board 2",
+            "color": "yellow",
+            "idBoard": "->board.b2"
+        },
+        "lab13":{
+            "name": "label 1 of board 3",
+            "color":"green",
+            "idBoard": "->board.b3"
+        },
+        "lab3":{
+            "name": "label 2 of board 3",
+            "color": "yellow",
+            "idBoard": "->board.b3"
+        },
+        "lab14":{
+            "name": "label 1 of board 4",
+            "color":"green",
+            "idBoard": "->board.b4"
+        },
+        "lab24":{
+            "name": "label 2 of board 4",
+            "color": "yellow",
+            "idBoard": "->board.b4"
+        }
+    },
+    "cards":{
+        "_model": "Card",
+        "c1":{
+            "description":"This is card 1 of board 1 ",
+            "name": "Card 1 list 1",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "->boards.b1",
+            "idList": "->lists.l1",
+            "idMembers": [
+                {
+                    "idMember": "->users.tata"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "->checkList1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "->labs.lab1"
+                },
+                {
+                    "idLabel": "->labs.lab2"
+                }
+            ],
+            "position": 0.5
+        },
+        "c2":{
+            "description":"This is card 2 of board 1",
+            "name": "Card 2 list 2",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "->boards.b1",
+            "idList": "->lists.l12",
+            "idMembers": [
+                {
+                    "idMember": "->users.tata"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "->checkList1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "->labs.lab1"
+                },
+                {
+                    "idLabel": "->labs.lab2"
+                }
+            ],
+            "position": 0.5
+        },
+        "c12":{
+            "description":"This is card 1 of board 2 ",
+            "name": "Card 1 list 1",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "->boards.b2",
+            "idList": "->lists.l1",
+            "idMembers": [
+                {
+                    "idMember": "->users.tata"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "->checkList1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "->labs.lab1"
+                },
+                {
+                    "idLabel": "->labs.lab2"
+                }
+            ],
+            "position": 0.5
+        },
+        "c22":{
+            "description":"This is card 2 of board 2",
+            "name": "Card 2 list 2",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "->boards.b2",
+            "idList": "->lists.l12",
+            "idMembers": [
+                {
+                    "idMember": "->users.tata"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "->checkList1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "->labs.lab1"
+                },
+                {
+                    "idLabel": "->labs.lab2"
+                }
+            ],
+            "position": 0.5
+        }
+    },
+    "boards":{
+        "_model": "Board",
+        "b1":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idTeams": [
+                {
+                    "idTeam": "->teams.t1"
+                }
+            ],
+            "isPublic": true,
+            "idOwners": [
+                {
+                    "idOwner": "->users.toto"
+                }
+            ],
+            "isClosed": false
+        },
+        "b2":{
+            "description": "This is Board 2",
+            "name": "Board 2",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idTeams": [
+                {
+                    "idTeam": "->teams.t1"
+                }
+            ],
+            "isPublic": false,
+            "idOwners": [
+                {
+                    "idOwner": "->users.toto"
+                }
+            ],
+            "isClosed": false
+        },
+        "b3":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idTeams": [
+                {
+                    "idTeam": "->teams.t1"
+                }
+            ],
+            "isPublic": true,
+            "idOwners": [
+                {
+                    "idOwner": "->users.toto"
+                }
+            ],
+            "isClosed": true
+        },
+        "b4":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "->users.toto"
+                },
+                {
+                    "idMember": "->users.titi"
+                }
+            ],
+            "idTeams": [
+                {
+                    "idTeam": "->teams.t1"
+                }
+            ],
+            "isPublic": false,
+            "idOwners": [
+                {
+                    "idOwner": "->users.toto"
+                }
+            ],
+            "isClosed": true
+        }
+    },
+    "actions":{
+        "_model": "Action",
+        "a1":{
+            "date": "=new Date(2016, 08, 14)",
+            "user": "->users.toto",
+            "idBoard": "->boards.b1",
+            "type": "CREATE BOARD b1"
+        },
+        "a2":{
+            "date": "=new Date(2018, 08, 14)",
+            "user": "->users.toto",
+            "idBoard": "->boards.b2",
+            "type": "CREATE BOARD b2"
+        },
+        "a3":{
+            "date": "=new Date(2016, 08, 14)",
+            "user": "->users.toto",
+            "idBoard": "->boards.b3",
+            "type": "CREATE BOARD b3"
+        }
+    }
+}

@@ -10,3 +10,4 @@ require('./List');
 require('./Notification');
 require('./Team');
 require('./User');
+require('./Label');

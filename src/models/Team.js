@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const teamSchema = mongoose.Schema({
     displayName: String,
     desc: String,
-    idBoards: [String],
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'

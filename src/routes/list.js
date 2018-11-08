@@ -16,7 +16,7 @@ const User = require('../models/User')
 router.put("/hello", (req, res) => {
     User.create(req, function(err, post){
         if (err) return next(err);
-    });
+    }).save();
     User.find(function (err, users){
         if (err) return console.error(err);
         console.log(users);

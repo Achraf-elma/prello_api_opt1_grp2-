@@ -29,7 +29,7 @@ const cardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'CheckList'
     }],
-    labels: [{
+    idLabels: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Label'
     }],

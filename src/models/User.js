@@ -8,8 +8,6 @@ const UserSchema = mongoose.Schema({
     initials: String,
     memberType: String, // ?
     loginType: String, // Google or normal I assume
-    idBoards: [String],
-    notifications: [String],
     hashpass: String, // Password hash
     saltpass: String, // Password hash salt
 },

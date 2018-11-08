@@ -20,7 +20,7 @@ const boardSchema = mongoose.Schema({
         required: true,
         default: true
     },
-    owners: [{
+    idOwners: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true, 
         ref: 'User'
