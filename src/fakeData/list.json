@@ -1,0 +1,115 @@
+[
+    {
+        "_id": "lllllllllll_1",
+        "name": "To do",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 0.5
+    },
+    {
+        "_id": "lllllllllll_2",
+        "name": "Doing",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 1
+    },
+    {
+        "_id": "lllllllllll_3",
+        "name": "Done",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 1.5
+    },
+    {
+        "_id": "lllllllllll_4",
+        "name": "To do closed",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": true,
+        "position": 2
+    },
+    {
+        "_id": "lllllllllll_12",
+        "name": "To do",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 0.5
+    },
+    {
+        "_id": "llllllll_22",
+        "name": "Doing",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 1
+    },
+    {
+        "_id": "llllllll_32",
+        "name": "Done",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": false,
+        "position": 1.5
+    },
+    {
+        "_id": "llllllll_42",
+        "name": "To do closed",
+        "idBoard": "bbbbbbbbbb1",
+        "isClosed": true,
+        "position": 2
+    },
+    {
+        "_id": "llllllll_13",
+        "name": "To do",
+        "idBoard": "bbbbbbbbbb3",
+        "isClosed": false,
+        "position": 0.5
+    },
+    {
+        "_id": "llllllll_23",
+        "name": "Doing",
+        "idBoard": "bbbbbbbbbb3",
+        "isClosed": false,
+        "position": 1
+    },
+    {
+        "_id": "llllllll_33",
+        "name": "Done",
+        "idBoard": "bbbbbbbbbb3",
+        "isClosed": false,
+        "position": 1.5
+    },
+    {
+        "_id": "llllllll_43",
+        "name": "To do closed",
+        "idBoard": "bbbbbbbbbb3",
+        "isClosed": true,
+        "position": 2
+    },
+    {
+        "_id": "llllllll_14",
+        "name": "To do",
+        "idBoard": "bbbbbbbbbb4",
+        "isClosed": false,
+        "position": 0.5
+    },
+    {
+        "_id": "llllllll_24",
+        "name": "Doing",
+        "idBoard": "bbbbbbbbbb4",
+        "isClosed": false,
+        "position": 1
+    },
+    {
+        "_id":"llllllll_34",
+        "name": "Done",
+        "idBoard": "bbbbbbbbbb4",
+        "isClosed": false,
+        "position": 1.5
+    },
+    {
+        "_id":"llllllll_44",
+        "name": "To do closed",
+        "idBoard": "bbbbbbbbbb4",
+        "isClosed": true,
+        "position": 2
+    }
+
+]

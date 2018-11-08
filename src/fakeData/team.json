@@ -1,0 +1,16 @@
+[
+    {
+        "id": "teammmmmmmmm1",
+        "displayName": "Team toto titi",
+        "desc": "This is the team toto titi, Admin = titi",
+        "idMembers": ["totototototo", "titititititi"],
+        "idAdmins": ["titititititi"]  
+    },
+    {
+        "_id": "t00000000002",
+        "displayName": "Team toto titi",
+        "desc": "This is the team toto titi, Admin = titi",
+        "idMembers": ["totototototo"],
+        "idAdmins": ["titititititi"]
+    }
+]

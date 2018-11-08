@@ -1,0 +1,22 @@
+[
+    {
+        "_id": "cccccccccc1",
+        "name": "Check list item 1",
+        "isChecked": true
+    },
+    {
+        "_id": "ccccccccccc2",
+        "name": "Check list item 2",
+        "isChecked": false
+    },
+    {
+        "_id": "ccccccccccc3",
+        "name": "Check list item 3",
+        "isChecked": false
+    },
+    {
+        "_id": "ccccccccccc4",
+        "name": "Check list item 4",
+        "isChecked": false
+    }
+]

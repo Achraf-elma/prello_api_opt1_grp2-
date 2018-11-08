@@ -1,0 +1,44 @@
+[
+    {
+        "_id": "bbbbbbbbbb1",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idTeams": ["teammmmmmmmm1"],
+        "isPublic": true,
+        "idOwners": [
+            "totototototo"
+        ],
+        "isClosed": false
+    },
+    {
+        "_id": "bbbbbbbbbb2",
+        "name": "Board 2",
+        "description": "This is Board 2",
+        "idMembers": ["totototototo","titititititi"],
+        "idTeams": ["teammmmmmmmm1"],
+        "isPublic": false,
+        "idOwners": ["totototototo"],
+        "isClosed": false
+    },
+    {
+        "_id": "bbbbbbbbbb3",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idTeams": ["teammmmmmmmm1"],
+        "isPublic": true,
+        "idOwners": ["totototototo"],
+        "isClosed": true
+    },
+    {
+        "_id": "bbbbbbbbbb4",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idTeams": ["teammmmmmmmm1"],
+        "isPublic": false,
+        "idOwners": ["totototototo"],
+        "isClosed": true
+    }
+]

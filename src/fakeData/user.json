@@ -1,0 +1,35 @@
+[
+    {
+        "_id": "totototototo",
+        "fullName": "Toto",
+        "email": "toto@gmail.com",
+        "bio": "Animal lover",
+        "initials": "T.O",
+        "memberType": "admin",
+        "loginType": "OAuth",
+        "hashpass": "dqefrqsgsdh",
+        "saltpass": "cvqsrgeqthq"
+    },
+    {
+        "_id": "titititititi",
+        "fullName": "Titi",
+        "email": "titi@gmail.com",
+        "bio": "Food lover",
+        "initials": "T.I",
+        "memberType": "User",
+        "loginType": "Prello",
+        "hashpass": "egefadaz",
+        "saltpass": "zrgfzdc"
+    },
+    {
+        "_id": "tatatatatata",
+        "fullName": "Tata",
+        "email": "tata@gmail.com",
+        "bio": "Sleep lover",
+        "initials": "T.O",
+        "memberType": "User",
+        "loginType": "OAuth",
+        "hashpass": "dzqfa2435",
+        "saltpass": "egqz24254"
+    }
+]
