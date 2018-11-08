@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 const cardSchema = mongoose.Schema({
     description: String,
     name: {
-        type: String, 
-        required: true
+        type: String,
     },
     dueDate: Date,
     //whether the card has be checked as "done" or not
     dueComplete: { 
         type: Boolean, 
-        required: true, 
         default: false
     },
     idBoard: {
@@ -35,7 +33,6 @@ const cardSchema = mongoose.Schema({
     }],
     isClosed: { 
         type: Boolean, 
-        required: true, 
         default: false
     },
     position: Number

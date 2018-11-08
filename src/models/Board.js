@@ -4,7 +4,6 @@ const boardSchema = mongoose.Schema({
     description: String,
     name: {
         type: String, 
-        required: true
     },
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
@@ -17,17 +16,14 @@ const boardSchema = mongoose.Schema({
     }],
     isPublic: {
         type: Boolean,
-        required: true,
         default: true
     },
     idOwners: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true, 
         ref: 'User'
     }],
     isClosed: { 
         type: Boolean, 
-        required: true, 
         default: false
     },
 },

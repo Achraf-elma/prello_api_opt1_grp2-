@@ -13,6 +13,9 @@ const UserSchema = mongoose.Schema({
 },
 {
     timestamps: true
+},
+{
+    _id: false
 });
 
 /** PASSWORD **/

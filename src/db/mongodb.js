@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const seeder = require('mongoose-seeder');
+//const seeder = require('mongoose-seeder');
 const data = require('../fakeData/data.json');
-
+const seeder = require('./seeder.js');
 /*seeder.connect('mongodb://localhost:27017/prello', function(){
   seeder.loadModels([
     '../models/Action.js',
@@ -28,15 +28,16 @@ const data = require('../fakeData/data.json');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect(/*process.env.MONGO_URL_PRELLO_2018*/'mongodb://localhost:27017/prello', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect(/*process.env.MONGO_URL*/'mongodb://localhost:27017/prello', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
+    seeder.seed()
   })
   .catch((err) => {
       console.error(err);
       console.log('Something is wrong with the connection to MongoDB. Please make sure your Mongo container is running.')
     });
-const db = mongoose.connection;
+/*const db = mongoose.connection;
 db.on("error", (err) => console.log(err));
 
 db.on("connected", ()=> {
@@ -56,7 +57,7 @@ db.on("connected", ()=> {
   }).catch(function(err){
     console.error("Error seeding database", err);
   });
-})
+})*/
 
 
 
