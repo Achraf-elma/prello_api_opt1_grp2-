@@ -10,9 +10,9 @@ const boardSchema = mongoose.Schema({
         default: [],
         ref: 'User'
     }],
-    idTeams: [{
+    idOrganizations: [{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Team'
+        ref: 'Organization'
     }],
     isPublic: {
         type: Boolean,

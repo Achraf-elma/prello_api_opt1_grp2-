@@ -8,7 +8,7 @@ require('./card');
 require('./checkListItem');
 require('./list');
 require('./notification');
-require('./team');
+require('./organization');
 require('./user');*/
 
 const List = require('../models/List');

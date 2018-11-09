@@ -8,6 +8,6 @@ require('./CheckList');
 require('./CheckListItem');
 require('./List');
 require('./Notification');
-require('./Team');
+require('./Organization');
 require('./User');
 require('./Label');

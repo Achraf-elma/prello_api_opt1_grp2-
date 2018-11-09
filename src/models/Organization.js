@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-const teamSchema = mongoose.Schema({
+const organizationSchema = mongoose.Schema({
     displayName: String,
     desc: String,
+    website: String,
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
@@ -16,4 +17,4 @@ const teamSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Team', teamSchema)
+module.exports = mongoose.model('Organization', organizationSchema)

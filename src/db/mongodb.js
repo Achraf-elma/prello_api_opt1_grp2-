@@ -11,11 +11,11 @@ const seeder = require('./seeder.js');
     '../models/CheckListItem.js',
     '../models/MailSettings.js',
     '../models/Notification.js',
-    '../models/Team.js',
+    '../models/Organization.js',
     '../models/User.js',
     '../models/Label.js'
   ]);
-  seeder.clearModels(['User', 'Team', 'Notification', 'MailSettings', 'CheckListItem', 'CheckList', 'Card', 'Board', 'Action', 'Label'], function(){
+  seeder.clearModels(['User', 'Organization', 'Notification', 'MailSettings', 'CheckListItem', 'CheckList', 'Card', 'Board', 'Action', 'Label'], function(){
     seeder.populateModels(data)
     .then(seeder.disconnect())
     .catch(err => console.log(err));
@@ -49,7 +49,7 @@ db.on("connected", ()=> {
   const CheckListItem = require('../models/CheckListItem');
   const List = require('../models/List');
   const Notification = require('../models/Notification');
-  const Team = require('../models/Team');
+  const Organization = require('../models/Organization');
   const User = require('../models/User');
   const Label = require('../models/Label');
   seeder.seed(data, { dropDatabase: false, dropCollections: true }).then(function(dbData){

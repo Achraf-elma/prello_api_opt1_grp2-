@@ -32,11 +32,11 @@
             "saltpass": "egqz24254"
         }
     },
-    "teams":{
-        "_model": "Team",
+    "organizations":{
+        "_model": "Organization",
         "t1":{
-            "displayName": "Team toto titi",
-            "desc": "This is the team toto titi, Admin = titi",
+            "displayName": "Organization toto titi",
+            "desc": "This is the organization toto titi, Admin = titi",
             "idMembers": [
                 {
                     "idMember": "totototototo"
@@ -52,8 +52,8 @@
             ]  
         },
         "t2":{
-            "displayName": "Team toto titi",
-            "desc": "This is the team toto titi, Admin = titi",
+            "displayName": "Organization toto titi",
+            "desc": "This is the organization toto titi, Admin = titi",
             "idMembers": [
                 {
                     "idMember": "totototototo"
@@ -424,9 +424,9 @@
                     "idMember": "titititititi"
                 }
             ],
-            "idTeams": [
+            "idOrganizations": [
                 {
-                    "idTeam": "teammmmmmmmm1"
+                    "idOrganization": "teammmmmmmmm1"
                 }
             ],
             "isPublic": true,
@@ -448,9 +448,9 @@
                     "idMember": "titititititi"
                 }
             ],
-            "idTeams": [
+            "idOrganizations": [
                 {
-                    "idTeam": "teammmmmmmmm1"
+                    "idOrganization": "teammmmmmmmm1"
                 }
             ],
             "isPublic": false,
@@ -472,9 +472,9 @@
                     "idMember": "titititititi"
                 }
             ],
-            "idTeams": [
+            "idOrganizations": [
                 {
-                    "idTeam": "teammmmmmmmm1"
+                    "idOrganization": "teammmmmmmmm1"
                 }
             ],
             "isPublic": true,
@@ -496,9 +496,9 @@
                     "idMember": "titititititi"
                 }
             ],
-            "idTeams": [
+            "idOrganizations": [
                 {
-                    "idTeam": "teammmmmmmmm1"
+                    "idOrganization": "teammmmmmmmm1"
                 }
             ],
             "isPublic": false,
