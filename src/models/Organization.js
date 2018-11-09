@@ -8,13 +8,20 @@ const organizationSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     }],
-    idAdmins: [{
+    idAdmin: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
-    }]
+    }
 },
 {
     timestamps: true
 });
+
+organizationSchema.methods.isUserAllowed = function(idUser){
+    return (
+        this.idMembers.includes(idUser) ||
+        this.idAdmin === idUser
+    );
+};
 
 module.exports = mongoose.model('Organization', organizationSchema)

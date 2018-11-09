@@ -18,10 +18,10 @@ const boardSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
-    idOwners: [{
+    idOwner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }],
+    },
     isClosed: { 
         type: Boolean, 
         default: false
@@ -35,7 +35,7 @@ boardSchema.methods.isUserAllowed = function(idUser){
     return (
         this.isPublic ||
         this.idMembers.includes(idUser) ||
-        this.owners.includes(idUser)
+        this.idOwner === (idUser)
     );
 };
 

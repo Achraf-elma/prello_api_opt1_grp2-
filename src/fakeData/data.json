@@ -430,11 +430,7 @@
                 }
             ],
             "isPublic": true,
-            "idOwners": [
-                {
-                    "idOwner": "totototototo"
-                }
-            ],
+            "idOwner": "totototototo",
             "isClosed": false
         },
         "b2":{
@@ -454,11 +450,7 @@
                 }
             ],
             "isPublic": false,
-            "idOwners": [
-                {
-                    "idOwner": "totototototo"
-                }
-            ],
+            "idOwner": "totototototo",
             "isClosed": false
         },
         "b3":{
@@ -478,11 +470,7 @@
                 }
             ],
             "isPublic": true,
-            "idOwners": [
-                {
-                    "idOwner": "totototototo"
-                }
-            ],
+            "idOwner": "totototototo",
             "isClosed": true
         },
         "b4":{
@@ -502,11 +490,7 @@
                 }
             ],
             "isPublic": false,
-            "idOwners": [
-                {
-                    "idOwner": "totototototo"
-                }
-            ],
+            "idOwner": "totototototo",
             "isClosed": true
         }
     },

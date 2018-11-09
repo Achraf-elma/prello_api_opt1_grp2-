@@ -42,7 +42,7 @@ module.exports = {
   upsert:(query, user) => (
     Board.findById(query.idBoard)
       .then(board => board ? board : Promise.reject(NOT_FOUND))
-      .then(board => board.owners.includes(user && user.idUser) ? board.save(query.updatedBoard) : Promise.reject(NOT_OWNER))
+      .then(board => board.idOwner === (user && user.idUser) ? board.save(query.updatedBoard) : Promise.reject(NOT_OWNER))
       .catch(error => error === NOT_FOUND ? (new Board(query.updatedBoard)).save() : Promise.reject(error))
   ),
 
@@ -71,7 +71,7 @@ module.exports = {
   disable:(query, user) => (
     Board.findById(query.idBoard)
     .then(board => board ? board : Promise.reject(NOT_FOUND))
-    .then(board => board.owners.includes(user && user.idUser) ? board.save({ isClosed: true }) : Promise.reject(NOT_OWNER))
+    .then(board => board.idOwner === (user && user.idUser) ? board.save({ isClosed: true }) : Promise.reject(NOT_OWNER))
   ),
 
   /**
@@ -86,9 +86,9 @@ module.exports = {
   findMembers: (query, user) => (
     Board.findById(query.idBoard)
       .populate('idMembers')
-      .populate('owners')
+      .populate('idOwner')
       .then(board => board ? board : Promise.reject(NOT_FOUND))
-      .then(board => board.isUserAllowed(user && user.idUser) ? [].concat([], board.idMembers, board.owners) : Promise.reject(IS_PRIVATE))
+      .then(board => board.isUserAllowed(user && user.idUser) ? [].concat([], board.idMembers, board.idOwner) : Promise.reject(IS_PRIVATE))
   ),
   /**
    * @desc add member to the board
@@ -102,7 +102,7 @@ module.exports = {
   addMember: (query, user) => (
     Board.findById(query.idBoard)
     .then(board => board ? board : Promise.reject(NOT_FOUND))
-    .then(board => board.owners.includes(user && user.idUser) ? board.save({idMembers: [...board.idMembers, query.idMember]}) : Promise.reject(NOT_OWNER))
+    .then(board => board.idOwner === (user && user.idUser) ? board.save({idMembers: [...board.idMembers, query.idMember]}) : Promise.reject(NOT_OWNER))
   ),
   /**
    * @desc remove member from the board
@@ -117,9 +117,19 @@ module.exports = {
     Board.findById(query.idBoard)
       .then(board => board ? board : Promise.reject(NOT_FOUND))
       .then(board => (
-        board.owners.includes(user && user.idUser) ?
+        board.idOwner === (user && user.idUser) ?
         board.save({ idMembers: board.idMembers.filter( idMember => idMember != query.idMember)}) :
         Promise.reject(NOT_OWNER)
       ))
+  ),
+
+  findByOrganization: (query, user) => (
+    Organization.findOne({
+      _id: query.idOrganization,
+    })
+      // .then( a => console.log(a))
+      .then(organization => organzation ? organization : Promise.reject(NOT_FOUND))
+      .then(organization => organization.isUserAllowed(user && user.idUser) ? organization : Promise.reject(IS_PRIVATE))
+      .then(organization => Board.find({ idOrganization: organization._id }))
   )
 }

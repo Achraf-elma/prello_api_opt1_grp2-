@@ -78,7 +78,7 @@ const cardController = {
             option: { $or: [
                     { isPublic: true },
                     { idMembers: { $contains: user.idUser } },
-                    { owners: { $contains: user.idUser } }
+                    { idOwner: user.idUser  }
             ]}
         };
 
