@@ -1,4 +1,6 @@
 const Board = require('../models/Board');
+const Organization = require('../models/Organization');
+const Member = require('../models/User');
 
 const IS_PRIVATE = "user cannot see target board";
 const NOT_OWNER = "Only board owner is allowed to do that";
@@ -127,9 +129,16 @@ module.exports = {
     Organization.findOne({
       _id: query.idOrganization,
     })
-      // .then( a => console.log(a))
       .then(organization => organzation ? organization : Promise.reject(NOT_FOUND))
       .then(organization => organization.isUserAllowed(user && user.idUser) ? organization : Promise.reject(IS_PRIVATE))
       .then(organization => Board.find({ idOrganization: organization._id }))
+  ),
+
+  findByMember: (query, user) => (
+    Member.findOne({
+      _id: query.idMember,
+    })
+      .then(member => member ? member : Promise.reject(NOT_FOUND))
+      .then(member => Board.find({ idMember: member._id }))
   )
 }

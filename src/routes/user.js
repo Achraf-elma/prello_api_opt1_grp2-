@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 // Controllers
 const userController = require('../controllers/user');
+const boardController = require('../controllers/board');
 
 /**
  * @desc get one user
@@ -20,6 +21,27 @@ router.get('/:idUser', (req, res) => {
     .catch(error => error === userController.NOT_FOUND ? res.status(404).json({error}) : Promise.reject(error))
     .catch(error => console.error( error ) || res.sendStatus(500));
   });
+
+
+  router.get('/:idUser/actions');
+
+  router.get('/:idUser/boards', (req,res) => {
+    let idUser = req.params.idUser;
+    let user = req.user;
+    boardController.findByMember({ idUser }, user)
+      .then(boards => res.json(boards))
+      .catch(error => error === boardController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+
+  });
+  router.get('/:idUser/boardsInvited');
+  router.get('/:idUser/cards');
+  router.get('/:idUser/notifications');
+  router.get('/:idUser/organizations');
+  router.get('/:idUser/organizationsInvited');
+
 
 /**
  * @desc upsert a user,
@@ -39,11 +61,15 @@ router.put('/:idUser', (req, res) => {
       .catch(error => console.error(error) || res.sendStatus(500));
   });
 
+
+
+  
 /**
  * @desc create a user,
  * @param idUser
  * @code 401 if user logged out or request uncomplete
  */
+/*
 router.post('/', (req, res) => {
     let idUser = req.params.idUser;
     let createdUser = req.body;
@@ -52,4 +78,4 @@ router.post('/', (req, res) => {
       .catch(error => error === userController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
       .catch(error => error === userController.INCOMPLETE_BODY ? res.status(401).json({ error }) : Promise.reject(error))
       .catch(error => console.error(error) || res.sendStatus(500));
-  });
+  });*/
