@@ -1,5 +1,5 @@
 const mockUser = require('../fakeData/user.json');
-const mockTeam = require('../fakeData/team.json');
+const mockOrganization = require('../fakeData/organization.json');
 const mockBoard = require('../fakeData/board.json');
 const mockList = require('../fakeData/list.json');
 const mockCheckListItem = require('../fakeData/checkListItem.json');
@@ -12,7 +12,7 @@ const CheckList = require('../models/CheckList');
 const CheckListItem = require('../models/CheckListItem');
 const List = require('../models/List');
 const Notification = require('../models/Notification');
-const Team = require('../models/Team');
+const Organization = require('../models/Organization');
 const User = require('../models/User');
 const Label = require('../models/Label');
 
@@ -42,8 +42,8 @@ module.exports = {
             await User.deleteMany()
             .then(() => console.log("User dropped"))
             .catch(error => console.log(error)); 
-            await Team.deleteMany()
-            .then(() => console.log("Team dropped"))
+            await Organization.deleteMany()
+            .then(() => console.log("Organization dropped"))
             .catch(error => console.log(error));
             /*await Board.deleteMany()
             .then(() => console.log("Board dropped"))
@@ -62,10 +62,10 @@ module.exports = {
                 ))
                 .then(() => console.log("User filled"))
                 .catch(error => console.log(error));
-                await Promise.all(mockTeam.map(
-                    async data => new Team(data).save()
+                await Promise.all(mockOrganization.map(
+                    async data => new Organization(data).save()
                 ))
-                .then(() => console.log("Team filled"))
+                .then(() => console.log("Organization filled"))
                 .catch(error => console.log(error));
                 /*await Promise.all(mockBoard.map(
                     async data => new Board(data).save()

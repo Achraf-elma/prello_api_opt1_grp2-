@@ -1,0 +1,16 @@
+[
+    {
+        "id": "organizationmmmmmmmm1",
+        "displayName": "Organization toto titi",
+        "desc": "This is the organization toto titi, Admin = titi",
+        "idMembers": ["totototototo", "titititititi"],
+        "idAdmins": ["titititititi"]  
+    },
+    {
+        "_id": "t00000000002",
+        "displayName": "Organization toto titi",
+        "desc": "This is the organization toto titi, Admin = titi",
+        "idMembers": ["totototototo"],
+        "idAdmins": ["titititititi"]
+    }
+]

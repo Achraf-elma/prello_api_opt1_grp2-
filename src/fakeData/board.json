@@ -4,7 +4,7 @@
         "name": "Board 1",
         "description": "This is Board 1",
         "idMembers": ["totototototo","titititititi"],
-        "idTeams": ["teammmmmmmmm1"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
         "isPublic": true,
         "idOwners": [
             "totototototo"
@@ -16,7 +16,7 @@
         "name": "Board 2",
         "description": "This is Board 2",
         "idMembers": ["totototototo","titititititi"],
-        "idTeams": ["teammmmmmmmm1"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
         "isPublic": false,
         "idOwners": ["totototototo"],
         "isClosed": false
@@ -26,7 +26,7 @@
         "name": "Board 1",
         "description": "This is Board 1",
         "idMembers": ["totototototo","titititititi"],
-        "idTeams": ["teammmmmmmmm1"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
         "isPublic": true,
         "idOwners": ["totototototo"],
         "isClosed": true
@@ -36,7 +36,7 @@
         "name": "Board 1",
         "description": "This is Board 1",
         "idMembers": ["totototototo","titititititi"],
-        "idTeams": ["teammmmmmmmm1"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
         "isPublic": false,
         "idOwners": ["totototototo"],
         "isClosed": true
