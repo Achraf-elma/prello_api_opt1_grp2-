@@ -28,14 +28,14 @@ const seeder = require('./seeder.js');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect(/*process.env.MONGO_URL*/'mongodb://mongo-opt1-grp2:561207b06a85abd0b322de824541e5ae@dokku-mongo-mongo-opt1-grp2:27017/mongo-opt1-grp2', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect(process.env.MONGO_URL_PRELLO_2018, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
-    seeder.seed()
+    //seeder.seed()
   })
   .catch((err) => {
       console.error(err);
-      console.log('Something is wrong with the connection to MongoDB. Please make sure your Mongo container is running.')
+      console.log('Something is wrong with the connection to MongoDB.')
     });
 /*const db = mongoose.connection;
 db.on("error", (err) => console.log(err));
