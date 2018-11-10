@@ -54,7 +54,9 @@ router.get('/:idList/cards', (req, res) => {
     .catch(error => console.error(error) || res.sendStatus(500));
 });
 
-
+router.get('/helloWorld', (req, res) => {
+    res.send("Hello world");
+  });
 /*************************** PUT ***************************/
 
 /**
