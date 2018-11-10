@@ -36,7 +36,7 @@ router.post("/", (req, res) => {
     ]})
     .then( user => user && user.checkPassword(password) ? user : Promise.reject(WRONG_PASSWORD))
     .then( user => res.status(201).json(tokenize(user)))
-    .catch( error => error === WRONG_PASSWORD ? res.sendStatus(401) : Promise.reject(error))
+    .catch( error => error === WRONG_PASSWORD ? res.status(401).json({error}) : Promise.reject(error))
     .catch( error => console.error(error) || res.sendStatus(500))
   );
 });
@@ -51,7 +51,7 @@ router.delete("/", (req, res) => (
 /**
  * Sign up
  */
-router.put("/", (req, res) => console.log(req.body) || (
+router.put("/", (req, res) => (
   User.findOne({email: req.body.email})
   .then(user => user && Promise.reject(USER_EXISTS))
   .then(nill => req.body.fullName && req.body.email && req.body.password ? {
@@ -62,8 +62,8 @@ router.put("/", (req, res) => console.log(req.body) || (
   .then(user => user.setPassword(req.body.password))
   .then( user => user.save())
   .then( user => res.status(200).json(tokenize(user)))
-  .catch( error => error === USER_EXISTS ? res.sendStatus(401) : Promise.reject(error))
-  .catch( error => error === INCOMPLETE_FORM ? res.status(403).json({error}) : Promise.reject(error))
+  .catch( error => error === USER_EXISTS ? res.status(401).json({error}) : Promise.reject(error))
+  .catch( error => error === INCOMPLETE_FORM ? res.status(400).json({error}) : Promise.reject(error))
   .catch( error => console.error(error) || res.sendStatus(500))
 ))
 
