@@ -135,10 +135,7 @@ module.exports = {
   ),
 
   findByMember: (query, user) => (
-    Member.findOne({
-      _id: query.idMember,
-    })
-      .then(member => member ? member : Promise.reject(NOT_FOUND))
-      .then(member => Board.find({ idMember: member._id }))
+      Board.find({ idMembers: { $contains: query.idMember}})
+      .exec()
   )
 }

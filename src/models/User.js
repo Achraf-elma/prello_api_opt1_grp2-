@@ -10,6 +10,12 @@ const UserSchema = mongoose.Schema({
     loginType: String, // Google or normal I assume
     hashpass: String, // Password hash
     saltpass: String, // Password hash salt
+    preferences: {
+        type: Object,
+        default: {
+            scheduleHour: 12,
+        }
+    },
 },
 {
     timestamps: true

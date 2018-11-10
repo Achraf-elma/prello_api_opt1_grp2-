@@ -3,6 +3,8 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const mongoose = require('./db/mongodb');
 const {untokenize} = require('./middleware/authentification');
 const routes = require("./routes");
@@ -17,7 +19,11 @@ const app = express();
  */
 app.set('port', process.env.DOKKU_DOCKERFILE_PORTS||3000);
 
-/**s
+app.use(cors({
+  allowedHeaders: ["Content-Type","Authorization"]
+}))
+
+/**
  * API requests 
  */
 app.use(
@@ -28,6 +34,7 @@ app.use(
   routes
 );
 
+app.use(( req, res ) => res.status(404).json({error: "This route leads nowhere"}));
 
 
 //TODO:

@@ -31,4 +31,13 @@ module.exports = {
     }))
   ),
 
+    /**
+   * @desc get action of a board
+   * @type {Promise}
+   * @returns [action.type]
+   */
+  findAllTypes: () => (
+    Action.aggregate([{$group:{_id:'type'}},{$project:{type:1}}, {$sort:{type: 1}}])
+    .exec()
+  )
 }

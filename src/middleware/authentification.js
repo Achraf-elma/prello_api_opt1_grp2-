@@ -38,8 +38,8 @@ module.exports = {
     // No reason to crash if the user doesn't try to authenticate himself
     .catch(error => error === NO_AUTH_HEADER || Promise.reject(error))
     .catch( error => error === EXPIRED || Promise.reject(error))
-    .catch( error => console.error(error))
+    .catch(error => request.url.match(/google/g) || console.error(error))
     // This task isn't mandatory
     .then( done => next())
-  )
+  ),
 };
