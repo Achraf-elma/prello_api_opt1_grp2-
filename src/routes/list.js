@@ -1,91 +1,123 @@
 const express = require("express");
 const router = express.Router();
-const listController = require("../controllers/list")
-const User = require('../models/User')
+const User = require('../models/User');
+
+//Controllers
+const listController = require("../controllers/list");
+const actionController = require('../controllers/action');
+const cardController = require('../controllers/card');
+
+
 /*************************** GET ***************************/
 
+/**
+ * @desc get first 20 action of a list 
+ * @param idList 
+ * @param {Number} page, Query param, page number
+ * @param {Number} perpage, Query param, number of action per page
+ * @code 401 if list is in a private board and user logged out
+ * @code 403 if list is in a private board and user isn't member
+ * @code 404 if list does not exist or list is closed
+ * @code 500 if internal server error
+ */
+//not necessary after all 
+/*router.get('/:idList/actions', (req, res) => {
+    let idList = req.params.idList;
+    let page = req.user.page || 0;
+    let perpage = req.query.perpage || 20;
+    let user = req.user;
 
+    actionController.findByList({idList, page, perpage}, user)
+    .then(actions => res.json(actions))
+    .catch(error => error === actionController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    .catch(error => error === actionController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+    .catch(error => error === actionController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
+});*/
+
+/**
+ * @desc get all the cards in a list
+ * @param idList
+ * @code 401 if board in which a card is is private and user logged out 
+ * @code 403 if board in which a card is private and user is not a member of it
+ * @code 404 if list does not exist 
+ * @code 500 if internal server error
+ */
+router.get('/:idList/cards', (req, res) => {
+    let idList = req.params.idBoard;
+    let user = req.user;
+    cardController.findByList( { idList }, user)
+    .then(cards => res.json(cards))
+    .catch(error => error === cardController.IS_PRIVATE && !user ? res.status(401).json( { error }) : Promise.reject(error))
+    .catch(error => error === cardController.IS_PRIVATE && user ? res.status(403).json({ error}) : Promise.reject(error))
+    .catch(error => error === cardController.NOT_FOUND ? res.json(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
+});
 
 
 /*************************** PUT ***************************/
 
-
 /**
-* Update a list given its id
-*/
-router.put("/hello", (req, res) => {
-    User.create(req, function(err, post){
-        if (err) return next(err);
-    }).save();
-    User.find(function (err, users){
-        if (err) return console.error(err);
-        console.log(users);
-        res.send(users)});
-    //res.send("Hello World");
+ * @desc update the properties of a list
+ * @param idList
+ * @code 401 if user logged out
+ */
+router.put('/:idList', (req, res) => {
+
 });
 
 /**
-* Archive or unarchive a list given its id
-*/
-// TODO CHECK 
-router.put("/{id}/closed", (req, res) => {
-    res.send("id/closed");
-});
+ * @desc close a list
+ */
+router.put('/:idList/closed', (req, res) => {
 
-
-/**
-* Move list to a new board 
-*/
-router.put("/{id}/{idboard}", (req, res) => {
-    res.send("id/idBoard");
-});
-
-
-/**
-* rename list 
-*/
-router.put("/{id}/name", (req, res) => {
-    res.send("id/name");
 });
 
 /**
-* change position of a list
-*/
-router.put("/{id}/pos", (req, res) => {
-    res.send("id/pos");
+ * @desc rename a list
+ */
+router.put('/:idList/name', (req, res) => {
+
 });
 
 /**
-* subscribe or unsubscribe from a list
-*/
-router.put("/{id}/subscribed", (req, res) => {
-    res.send("id/subscribed");
+ * @desc change the position of a list
+ */
+router.put('/:idList/pos', (req, res) => {
+
 });
 
+/**
+ * @desc subscribe of unsubscribe from a list
+ */
+router.put('/:idList/subscribed', (req, res) => {
 
+});
 
 
 /*************************** POST ***************************/
 
 /**
-* Create a new list
-*/
-router.post("/", (req, res) => {
-    res.send("create new list");
-});
+ * @desc create a new list on a board
+ */
+router.post('/')
 
 /**
-* Archive card of a given list
-*/
-router.post("/{id}/archiveAllCards", (req, res) => {
-    res.send("Archive all cards of a list");
+ * @desc archive all cards in a list
+ */
+router.post('/:idList/archiveAllCards', (req, res) => {
+
 });
 
+
 /**
-* move all cards of a given list
-*/
-router.post("/{id}/moveAllCards", (req, res) => {
-    res.send("Move all cards of a list");
+ * @desc move all cards in a list
+ */
+router.post('/:idList/moveAllCards', (req, res) => {
+
 });
+
+
+
 
 module.exports = router;

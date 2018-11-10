@@ -58,7 +58,8 @@ module.exports = {
         await (async() => {
                 console.log("Initializing databases");
                 await Promise.all(mockUser.map(
-                    async data => new User(data).save()
+                    async data => User.insertMany(data).then(() => console.log("user saved"))
+                                                        .catch(err => console.log(err))
                 ))
                 .then(() => console.log("User filled"))
                 .catch(error => console.log(error));
@@ -67,12 +68,13 @@ module.exports = {
                 ))
                 .then(() => console.log("Organization filled"))
                 .catch(error => console.log(error));
-                /*await Promise.all(mockBoard.map(
-                    async data => new Board(data).save()
+                await Promise.all(mockBoard.map(
+                    async data => Board.insertMany(data).then(() => console.log("board saved"))
+                                                        .catch(err => console.log(err))
                 ))
                 .then(() => console.log("Board filled"))
                 .catch(error => console.log(error));
-                await Promise.all(mockList.map(
+                /*await Promise.all(mockList.map(
                     async data => new List(data).save()
                 ))
                 .then(() => console.log("List filled"))

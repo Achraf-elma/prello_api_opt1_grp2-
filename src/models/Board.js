@@ -8,7 +8,7 @@ const boardSchema = mongoose.Schema({
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         default: [],
-        ref: 'User'
+        //ref: 'User'
     }],
     idOrganizations: [{
         type: mongoose.Schema.Types.ObjectId, 
