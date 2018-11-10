@@ -28,10 +28,10 @@ const seeder = require('./seeder.js');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect('mongodb://mongo:9e9cd29da269d724e18cfaada7131f0e@dokku-mongo-mongo:27017/mongo', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect(process.env.MONGO_URL_PRELLO_2018, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
-    //seeder.seed()
+    // seeder.seed();
   })
   .catch((err) => {
       console.error(err);
