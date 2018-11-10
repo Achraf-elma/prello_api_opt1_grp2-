@@ -100,7 +100,7 @@ router.put('/:idList/subscribed', (req, res) => {
 /**
  * @desc create a new list on a board
  */
-router.post('/', (res, res) => {
+router.post('/', (req, res) => {
     res.send("Hello world");
 });
 

@@ -28,7 +28,7 @@ const seeder = require('./seeder.js');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect(process.env.MONGO_URL, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect(/*process.env.MONGO_URL*/'mongodb://mongo-opt1-grp2:561207b06a85abd0b322de824541e5ae@dokku-mongo-mongo-opt1-grp2:27017/mongo-opt1-grp2', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
     seeder.seed()
