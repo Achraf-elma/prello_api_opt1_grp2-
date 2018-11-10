@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     duedate,
     page,
     perpage,
-    dueComplete,
+    duecomplete,
   } = req.query;
   
   let query = {
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
     duedate: (duedate%1 > -1) ? duedate*1 : undefined,
     page: (page % 1 > -1) ? page * 1 : undefined,
     perpage: (perpage % 1 > -1) ? perpage * 1 : undefined,
-    duecomplete,
+    duecomplete: duecomplete === "true" || (duecomplete === "false" ? false : undefined),
   };
   cardController.findWithFilters( query, user )
   .then(cards => res.json(cards))
