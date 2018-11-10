@@ -101,7 +101,7 @@ router.put('/:idList/subscribed', (req, res) => {
  * @desc create a new list on a board
  */
 router.post('/', (req, res) => {
-    res.send("Hello world");
+    res.end("Hello world");
 });
 
 /**

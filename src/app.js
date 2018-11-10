@@ -3,7 +3,6 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const mongoose = require('./db/mongodb');
 const {untokenize} = require('./middleware/authentification');
 const routes = require("./routes");
