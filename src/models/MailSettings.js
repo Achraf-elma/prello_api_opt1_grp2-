@@ -12,4 +12,4 @@ const mailSettingSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('MailSetting', mailSettingSchema)
+module.exports = mongoose.model('MailSettings', mailSettingSchema)

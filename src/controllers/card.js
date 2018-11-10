@@ -69,7 +69,7 @@ const cardController = {
     
     /**
      * @desc
-     * @param {boards?, lists?, labels?, duedate?, duecomplete, perpage, page, }
+     * @param {boards?, lists?, labels?, duedate?, duecomplete, perpage, page}
      */
     findWithFilters: (query, user) => {
         let boardPopulate = query.boards && {
@@ -78,7 +78,7 @@ const cardController = {
             option: { $or: [
                     { isPublic: true },
                     { idMembers: { $contains: user.idUser } },
-                    { owners: { $contains: user.idUser } }
+                    { idOwner: user.idUser  }
             ]}
         };
 
@@ -94,7 +94,7 @@ const cardController = {
         })
         .populate(boardPopulate)
         .populate({ path: 'idList', select: 'idBoard', populate: boardPopulate })
-    }
+    },
     /*,
     findAll: () => { 
         cardModel.find({},function (err, cards){
@@ -109,6 +109,25 @@ const cardController = {
             }
         }
     }*/
+
+    /**
+     * @desc get cards of a board
+     * @type {Promise}
+     * @param {Object} query, {idList}
+     * @param {Object} user, user information {idUser}
+     */
+    findByList: (query, user) => {
+        List.findOne({
+            _id: query.idList,
+        })
+        .then(list => list ? list : Promise.reject(NOT_FOUND))
+        .then(list => Board.findOne({
+                                        _id: list.idBoard,
+                                    })
+                            .then( board => board.isUserAllowed(user && user.idUser) ? board : Promise.reject(IS_PRIVATE))
+                            .then( board => Card.find({idList: query.idList}) )           
+        )
+    }
 }
 
 module.exports = cardController;

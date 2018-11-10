@@ -1,0 +1,42 @@
+[
+    {
+        "_id": "bbbbbbbbbb1",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
+        "isPublic": true,
+        "idOwner": "totototototo",
+        "isClosed": false
+    },
+    {
+        "_id": "bbbbbbbbbb2",
+        "name": "Board 2",
+        "description": "This is Board 2",
+        "idMembers": ["totototototo","titititititi"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
+        "isPublic": false,
+        "idOwner": "totototototo",
+        "isClosed": false
+    },
+    {
+        "_id": "bbbbbbbbbb3",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
+        "isPublic": true,
+        "idOwner": "totototototo",
+        "isClosed": true
+    },
+    {
+        "_id": "bbbbbbbbbb4",
+        "name": "Board 1",
+        "description": "This is Board 1",
+        "idMembers": ["totototototo","titititititi"],
+        "idOrganizations": ["organizationmmmmmmmm1"],
+        "isPublic": false,
+        "idOwner": "totototototo",
+        "isClosed": true
+    }
+]

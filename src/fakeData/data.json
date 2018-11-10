@@ -1,0 +1,518 @@
+{
+    "users":{
+        "_model": "User",
+        "toto": {
+            "fullName": "Toto",
+            "email": "toto@gmail.com",
+            "bio": "Animal lover",
+            "initials": "T.O",
+            "memberType": "admin",
+            "loginType": "OAuth",
+            "hashpass": "dqefrqsgsdh",
+            "saltpass": "cvqsrgeqthq" 
+        },
+        "titi": {
+            "fullName": "Titi",
+            "email": "titi@gmail.com",
+            "bio": "Food lover",
+            "initials": "T.I",
+            "memberType": "User",
+            "loginType": "Prello",
+            "hashpass": "egefadaz",
+            "saltpass": "zrgfzdc"
+        },
+        "tata": {
+            "fullName": "Tata",
+            "email": "tata@gmail.com",
+            "bio": "Sleep lover",
+            "initials": "T.O",
+            "memberType": "User",
+            "loginType": "OAuth",
+            "hashpass": "dzqfa2435",
+            "saltpass": "egqz24254"
+        }
+    },
+    "organizations":{
+        "_model": "Organization",
+        "t1":{
+            "displayName": "Organization toto titi",
+            "desc": "This is the organization toto titi, Admin = titi",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idAdmins": [
+                {
+                    "idAdmin": "titititititi"
+                }
+            ]  
+        },
+        "t2":{
+            "displayName": "Organization toto titi",
+            "desc": "This is the organization toto titi, Admin = titi",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                }
+            ],
+            "idAdmins": [
+                {
+                    "idAdmin": "totototototo"
+                }
+            ]
+        }
+    },
+    "notifications":{
+        "_model": "Notification",
+        "not1": {
+            "date": "=new Date(2018, 08, 14)",
+            "user": "totototototo",
+            "idActions": [
+                    {
+                        "idAction": "aaaaaaaaaaaaaa1"
+                    },
+                    {
+                        "idAction": "aaaaaaaaaaaaaa2"
+                    }
+            ]
+        },
+        "not2": {
+            "date": "=new Date(2016, 08, 14)",
+            "user": "titititititi",
+            "idActions": [
+                    {
+                        "idAction": "aaaaaaaaaaaaaa3"
+                    },
+                    {
+                        "idAction": "aaaaaaaaaaaaaa1"
+                    }
+            ]
+        },
+        "not3": {
+            "date": "=new Date(2018, 08, 15)",
+            "user": "tatatatatata",
+            "idActions": [
+                    {
+                        "idAction": "aaaaaaaaaaaaaa1"
+                    },
+                    {
+                        "idAction": "aaaaaaaaaaaaaa2"
+                    }
+            ]
+        }
+    },
+    "lists":{
+        "_model": "List",
+        "l1":{
+            "name": "To do",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l2":{
+            "name": "Doing",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 1
+        },
+        "l3":{
+            "name": "Done",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l4":{
+            "name": "To do closed",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": true,
+            "position": 2
+        },
+        "l12":{
+            "name": "To do",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l22":{
+            "name": "Doing",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 1
+        },
+        "l32":{
+            "name": "Done",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l42":{
+            "name": "To do closed",
+            "idBoard": "bbbbbbbbbb1",
+            "isClosed": true,
+            "position": 2
+        },
+        "l13":{
+            "name": "To do",
+            "idBoard": "bbbbbbbbbb3",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l23":{
+            "name": "Doing",
+            "idBoard": "bbbbbbbbbb3",
+            "isClosed": false,
+            "position": 1
+        },
+        "l33":{
+            "name": "Done",
+            "idBoard": "bbbbbbbbbb3",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l43":{
+            "name": "To do closed",
+            "idBoard": "bbbbbbbbbb3",
+            "isClosed": true,
+            "position": 2
+        },
+        "l14":{
+            "name": "To do",
+            "idBoard": "bbbbbbbbbb4",
+            "isClosed": false,
+            "position": 0.5
+        },
+        "l24":{
+            "name": "Doing",
+            "idBoard": "bbbbbbbbbb4",
+            "isClosed": false,
+            "position": 1
+        },
+        "l34":{
+            "name": "Done",
+            "idBoard": "bbbbbbbbbb4",
+            "isClosed": false,
+            "position": 1.5
+        },
+        "l44":{
+            "name": "To do closed",
+            "idBoard": "bbbbbbbbbb4",
+            "isClosed": true,
+            "position": 2
+        }
+    },
+    "mailSettings":{
+        "_model": "Notification"
+    },
+    "checkListItems":{
+        "_model": "CheckListItem",
+        "checkListItem1":{
+            "name": "Check list item 1",
+            "isChecked": true
+        },
+        "checkListItem2":{
+            "name": "Check list item 2",
+            "isChecked": false
+        },
+        "checkListItem3":{
+            "name": "Check list item 3",
+            "isChecked": false
+        },
+        "checkListItem4":{
+            "name": "Check list item 4",
+            "isChecked": false
+        }
+    },
+    "checkLists":{
+        "_model": "CheckList",
+        "checkList1": {
+            "name": "Check list 1",
+            "idActiocheckListItems": [
+                {
+                    "idCheckListItem": "cccccccckliiii1"
+                },
+                {
+                    "idCheckListItem": "cccccccckliiii2"
+                }
+        ]
+        },
+        "checkList2":{
+            "name": "Check list 2",
+            "idActiocheckListItems": [
+                {
+                    "idCheckListItem": "cccccccckliiii3"
+                },
+                {
+                    "idCheckListItem": "cccccccckliiii4"
+                }
+        ]
+        }
+    },
+    "labels":{
+        "_model": "Label",
+        "lab1":{
+            "name": "label 1 of board 1",
+            "color": "green",
+            "idBoard": "bbbbbbbbbb1"
+        },
+        "lab2":{
+            "name": "label 2 of board 1",
+            "color": "yellow",
+            "idBoard": "bbbbbbbbbb1"
+        },
+        "lab12":{
+            "name": "label 1 of board 2",
+            "color":"green",
+            "idBoard": "bbbbbbbbbb2"
+        },
+        "lab22":{
+            "name": "label 2 of board 2",
+            "color": "yellow",
+            "idBoard": "bbbbbbbbbb2"
+        },
+        "lab13":{
+            "name": "label 1 of board 3",
+            "color":"green",
+            "idBoard": "bbbbbbbbbb3"
+        },
+        "lab3":{
+            "name": "label 2 of board 3",
+            "color": "yellow",
+            "idBoard": "bbbbbbbbbb3"
+        },
+        "lab14":{
+            "name": "label 1 of board 4",
+            "color":"green",
+            "idBoard": "bbbbbbbbbb4"
+        },
+        "lab24":{
+            "name": "label 2 of board 4",
+            "color": "yellow",
+            "idBoard": "bbbbbbbbbb4"
+        }
+    },
+    "cards":{
+        "_model": "Card",
+        "c1":{
+            "description":"This is card 1 of board 1 ",
+            "name": "Card 1 list 1",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "bbbbbbbbbb1",
+            "idList": "ll11111111111111",
+            "idMembers": [
+                {
+                    "idMember": "tatatatatata"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "checkliiiiii1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "llllllllllllllab1"
+                },
+                {
+                    "idLabel": "llllllllllllllab2"
+                }
+            ],
+            "position": 0.5
+        },
+        "c2":{
+            "description":"This is card 2 of board 1",
+            "name": "Card 2 list 2",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "bbbbbbbbbb1",
+            "idList": "ll11111111111111",
+            "idMembers": [
+                {
+                    "idMember": "tatatatatata"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "checkliiiiii1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "llllllllllllllab1"
+                },
+                {
+                    "idLabel": "llllllllllllllab2"
+                }
+            ],
+            "position": 4
+        },
+        "c12":{
+            "description":"This is card 1 of board 2 ",
+            "name": "Card 1 list 1",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "bbbbbbbbbb1",
+            "idList": "ll11111111111111",
+            "idMembers": [
+                {
+                    "idMember": "tatatatatata"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "checkliiiiii1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "llllllllllllllab1"
+                },
+                {
+                    "idLabel": "llllllllllllllab2"
+                }
+            ],
+            "position": 0.5
+        },
+        "c22":{
+            "description":"This is card 2 of board 2",
+            "name": "Card 2 list 2",
+            "dueDate": "=new Date(2018, 11, 09)",
+            "dueComple": true,
+            "idBoard": "bbbbbbbbbb1",
+            "idList": "lllllllllllllllllllll12",
+            "idMembers": [
+                {
+                    "idMember": "tatatatatata"
+                }
+            ],
+            "idCheckLists": [
+                {
+                    "idCheckList": "checkliiiiii1"
+                }
+            ],
+            "idLabels": [
+                {
+                    "idLabel": "llllllllllllllab1"
+                },
+                {
+                    "idLabel": "llllllllllllllab2"
+                }
+            ],
+            "position": 0.5
+        }
+    },
+    "boards":{
+        "_model": "Board",
+        "b1":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idOrganizations": [
+                {
+                    "idOrganization": "organizationmmmmmmmm1"
+                }
+            ],
+            "isPublic": true,
+            "idOwner": "totototototo",
+            "isClosed": false
+        },
+        "b2":{
+            "description": "This is Board 2",
+            "name": "Board 2",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idOrganizations": [
+                {
+                    "idOrganization": "organizationmmmmmmmm1"
+                }
+            ],
+            "isPublic": false,
+            "idOwner": "totototototo",
+            "isClosed": false
+        },
+        "b3":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idOrganizations": [
+                {
+                    "idOrganization": "organizationmmmmmmmm1"
+                }
+            ],
+            "isPublic": true,
+            "idOwner": "totototototo",
+            "isClosed": true
+        },
+        "b4":{
+            "description": "This is Board 1",
+            "name": "Board 1",
+            "idMembers": [
+                {
+                    "idMember": "totototototo"
+                },
+                {
+                    "idMember": "titititititi"
+                }
+            ],
+            "idOrganizations": [
+                {
+                    "idOrganization": "organizationmmmmmmmm1"
+                }
+            ],
+            "isPublic": false,
+            "idOwner": "totototototo",
+            "isClosed": true
+        }
+    },
+    "actions":{
+        "_model": "Action",
+        "a1":{
+            "date": "=new Date(2016, 08, 14)",
+            "user": "totototototo",
+            "idBoard": "bbbbbbbbbb1",
+            "type": "CREATE BOARD b1"
+        },
+        "a2":{
+            "date": "=new Date(2018, 08, 14)",
+            "user": "totototototo",
+            "idBoard": "bbbbbbbbbb1",
+            "type": "CREATE BOARD b2"
+        },
+        "a3":{
+            "date": "=new Date(2016, 08, 14)",
+            "user": "totototototo",
+            "idBoard": "bbbbbbbbbb3",
+            "type": "CREATE BOARD b3"
+        }
+    }
+}

@@ -4,30 +4,26 @@ const boardSchema = mongoose.Schema({
     description: String,
     name: {
         type: String, 
-        required: true
     },
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         default: [],
-        ref: 'User'
+        //ref: 'User'
     }],
-    idTeams: [{
+    idOrganizations: [{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Team'
+        ref: 'Organization'
     }],
     isPublic: {
         type: Boolean,
-        required: true,
         default: true
     },
-    owners: [{
+    idOwner: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true, 
         ref: 'User'
-    }],
+    },
     isClosed: { 
         type: Boolean, 
-        required: true, 
         default: false
     },
 },
@@ -39,7 +35,7 @@ boardSchema.methods.isUserAllowed = function(idUser){
     return (
         this.isPublic ||
         this.idMembers.includes(idUser) ||
-        this.owners.includes(idUser)
+        this.idOwner === (idUser)
     );
 };
 

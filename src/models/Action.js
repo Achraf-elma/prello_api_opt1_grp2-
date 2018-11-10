@@ -15,7 +15,6 @@ const actionSchema = mongoose.Schema({
     //The data involved for an action: for instance --> card, list, board
     data: [{
         type: Object,
-        required: true
     }],
     type: String
 },
