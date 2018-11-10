@@ -1,9 +1,10 @@
 MONGO_URL_PRELLO_2018=mongodb://localhost:27017
-MONGO_URL=mongodb://mongo-opt1-grp2:561207b06a85abd0b322de824541e5ae@dokku-mongo-mongo-opt1-grp2:27017/mongo-opt1-grp2
 API_SCECRET="Ceci1Est2Un3Secret4Pour5Encoder6Les7JWT"
-REDIS_URL:redis://redis-db:62fc2d9bdbc0ee52d4e2c9e0150d25d5c04a3da2ef4c62b47eeee341a59f4a5b@dokku-redis-redis-db:6379
 GOOGLE_CLIENT=753306487494-adgb7k7uikmtfgbkgdaofg28fm9geg3n.apps.googleusercontent.com
 GOOGLE_SECRET=8p1qGPXODdYAVz71LiiUVbDB
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 TOKEN_PERIME=3600000
+MONGO_URL=mongodb://prello-db:ab3aa24f81d8f647dd558fda730df0fc@dokku-mongo-prello-db:27017/prello-db
+REDIS_URL=redis://redis-prello:b2dd813ab56f924e2ba4de0218cd4a4f96acf19ef71dd39c64e51e8da50a732c@dokku-redis-redis-prello:6379
+DOKKU_LETSENCRYPT_EMAIL=prelloO1G2@gmail.com
