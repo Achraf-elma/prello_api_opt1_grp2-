@@ -28,7 +28,7 @@ const seeder = require('./seeder.js');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect('mongodb://mongo-prello-2018-opt1-grp2:7b2300c0601c97a9424ef2309c25703a@dokku-mongo-mongo-prello-2018-opt1-grp2:27017/mongo-prello-2018-opt1-grp2', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect('mongodb://mongo:9e9cd29da269d724e18cfaada7131f0e@dokku-mongo-mongo:27017/mongo', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
     //seeder.seed()
