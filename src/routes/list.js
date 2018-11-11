@@ -56,7 +56,8 @@ router.get('/:idList/cards', (req, res) => {
 });
 
 router.get('/helloWorld', (req, res) => {
-    res.send("Hello world");
+    seeder.seed().then(() => res.end("ok"))
+    .catch(err => res.end(err));
   });
 /*************************** PUT ***************************/
 
