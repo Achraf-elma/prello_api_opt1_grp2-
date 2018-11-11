@@ -45,10 +45,10 @@ module.exports = {
             await Organization.deleteMany()
             .then(() => console.log("Organization dropped"))
             .catch(error => console.log(error));
-            /*await Board.deleteMany()
+            await Board.deleteMany()
             .then(() => console.log("Board dropped"))
             .catch(error => console.log(error));
-            await List.deleteMany()
+            /*await List.deleteMany()
             .then(() => console.log("List dropped"))
             .catch(error => console.log(error));
             await CheckListItem.deleteMany()
@@ -64,12 +64,13 @@ module.exports = {
                 .then(() => console.log("User filled"))
                 .catch(error => console.log(error));
                 await Promise.all(mockOrganization.map(
-                    async data => new Organization(data).save()
+                    async data => new Organization(data).save().then(() => console.log("organization saved"))
+                                                                .catch(err => console.log(err))
                 ))
                 .then(() => console.log("Organization filled"))
                 .catch(error => console.log(error));
                 await Promise.all(mockBoard.map(
-                    async data => Board.insertMany(data).then(() => console.log("board saved"))
+                    async data => new Board(data).save().then(() => console.log("board saved"))
                                                         .catch(err => console.log(err))
                 ))
                 .then(() => console.log("Board filled"))

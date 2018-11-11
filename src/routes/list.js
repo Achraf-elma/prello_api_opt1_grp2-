@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
+const seeder = require('../db/seeder.js');
 
 //Controllers
 const listController = require("../controllers/list");
@@ -103,7 +104,9 @@ router.put('/:idList/subscribed', (req, res) => {
  * @desc create a new list on a board
  */
 router.post('/', (req, res) => {
-    res.end("Hello world");
+    seeder.seed().then(() => res.end("ok"))
+    .catch(err => res.end(err));
+    //res.json({message: "hello"});
 });
 
 /**
