@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const actionSchema = mongoose.Schema({
     date: Date,
-    user: {
+    member: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         required: true

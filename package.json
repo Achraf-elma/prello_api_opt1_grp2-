@@ -27,6 +27,8 @@
     "mongo": "^0.1.0",
     "mongoose": "^5.3.6",
     "mongoose-seed": "^0.5.1",
-    "mongoose-seeder": "^1.2.1"
+    "mongoose-seeder": "^1.2.1",
+    "socket.io": "^2.1.1",
+    "socket.io-redis": "^5.2.0"
   }
 }

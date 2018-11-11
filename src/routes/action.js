@@ -9,3 +9,4 @@ router.get('/types', (req, res) => (
   .then( actionTypes => res.json(actionTypes))
   .catch( error => console.error(error) || res.sendStatus(500))
 ));
+
