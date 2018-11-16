@@ -28,7 +28,7 @@ const seeder = require('./seeder.js');
 /**
  * Establish connection to MongoDB
  */
-mongoose.connect('mongodb://prello-db:ab3aa24f81d8f647dd558fda730df0fc@dokku-mongo-prello-db:27017/prello-db', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
+mongoose.connect('mongodb://localhost:27017/prellodb', { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
     seeder.seed();

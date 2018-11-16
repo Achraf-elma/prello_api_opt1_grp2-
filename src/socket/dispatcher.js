@@ -48,6 +48,8 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
       .then(card => console.log(card))
       .catch(error => reject('error dispatcher '+ action.type + error))
 
+    // -----------------Set card desc-----------------
+
     case SET_CARD_DESC:
       const idCard= action.payload.id; 
       const newValue = action.payload.desc ; 
@@ -95,7 +97,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     // ----------------- DEFAULT --------------------
 
     default:
-      return reject('Unhandled action: ' + JSON.stringify(action));
+      return reject('Unhandllllled action: ' + JSON.stringify(action));
   }
 });
 
