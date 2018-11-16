@@ -155,7 +155,7 @@ router.get('/:idBoard([0-9a-fA-F]{24})/members', (req, res) => {
  */
 router.put('/:idBoard([0-9a-fA-F]{24})', (req, res) => {
   let idBoard = req.params.idBoard;
-  let upsertBoard = req.body.params;
+  let upsertBoard = req.body;
   let user = req.user;
   boardController.upsert({ idBoard, upsertBoard }, user)
     .then(board => res.json(board))

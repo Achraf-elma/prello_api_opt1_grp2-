@@ -42,7 +42,12 @@ module.exports = {
           .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
           .then(organization => organization.isUserAllowed(user && user.idUser) ? [].concat([], organization.idMembers, organization.idAdmin) : Promise.reject(IS_PRIVATE))
       ),
-
+    findByMember: (query, user) => (
+      Organization.find({ idMembers: query.idMember })
+        .exec()
+        .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
+        .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
+    )
 
   /**
    * @desc upsert one organization

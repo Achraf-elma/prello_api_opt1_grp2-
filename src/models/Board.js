@@ -20,6 +20,7 @@ const boardSchema = mongoose.Schema({
     },
     idOwner: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: 'User'
     },
     isClosed: { 
@@ -35,8 +36,18 @@ boardSchema.methods.isUserAllowed = function(idUser){
     return (
         this.isPublic ||
         this.idMembers.includes(idUser) ||
-        this.idOwner === (idUser)
+        this.idOwner.equals(idUser)
     );
 };
+
+// Duplicate the ID field.
+boardSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+boardSchema.set('toJSON', {
+    virtuals: true
+});
 
 module.exports = mongoose.model('Board', boardSchema);

@@ -50,8 +50,8 @@ module.exports = {
     Board.findById(query.idBoard)
       .exec()
       .then(board => board ? board : Promise.reject(NOT_FOUND))
-      .then(board => board.idOwner.equals(user && user.idUser) ? board.save(query.updatedBoard) : Promise.reject(NOT_OWNER))
-      .catch(error => error === NOT_FOUND ? (new Board(query.updatedBoard)).save() : Promise.reject(error))
+      .then(board => board.idOwner.equals(user && user.idUser) ? board.save(query.upsertBoard) : Promise.reject(NOT_OWNER))
+      .catch(error => error === NOT_FOUND ? (new Board(query.upsertBoard)).save() : Promise.reject(error))
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error ))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
   ),
@@ -160,7 +160,7 @@ module.exports = {
   ),
 
   findByMember: (query, user) => (
-      Board.find({ idMembers: { $contains: query.idMember}})
+      Board.find({$or:[{ idOwner: query.idMember},{ idMembers: query.idMember}]})
       .exec()
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
