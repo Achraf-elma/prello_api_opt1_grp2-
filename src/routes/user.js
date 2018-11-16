@@ -24,20 +24,38 @@ router.get('/:idMember([0-9a-fA-F]{24})', (req, res) => {
   router.get('/:idMember([0-9a-fA-F]{24})/actions');
 
   router.get('/:idMember([0-9a-fA-F]{24})/boards', (req,res) => {
-    let idUser = req.params.idMember;
+    let idMember = req.params.idMember;
     let user = req.user;
-    boardController.findByMember({ idMember }, user)
-      .then(boards => res.json(boards))
-      .catch(error => error === boardController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
-      .catch(error => error === boardController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
-      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
-      .catch(error => console.error(error) || res.sendStatus(500));
-
+    if( !user ) {
+      res.sendStatus(401)
+    } else if ( user.idUser !== idMember ) {
+      res.sendStatus(403)
+    } else {
+      boardController.findByMember({ idMember }, user)
+        .then(boards => res.json(boards))
+        .catch(error => error === boardController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+        .catch(error => error === boardController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+        .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+        .catch(error => console.error(error) || res.sendStatus(500));
+    }
   });
   router.get('/:idMember([0-9a-fA-F]{24})/boardsInvited');
   router.get('/:idMember([0-9a-fA-F]{24})/cards');
   router.get('/:idMember([0-9a-fA-F]{24})/notifications');
-  router.get('/:idMember([0-9a-fA-F]{24})/organizations');
+  router.get('/:idMember([0-9a-fA-F]{24})/organizations', (req, res) => {
+    let idMember = req.params.idMember;
+    let user = req.user;
+    if(!user) { res.sendStatus(401); }
+    else if( user.idUser !== idMember ) { res.sendStatus(403); }
+    else {
+      organizationController.findByMember({ idMember }, user)
+        .then(user => res.json(user))
+        .catch(error => error === memberController.NOT_USER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+        .catch(error => error === memberController.NOT_USER && user ? res.status(403).json({ error }) : Promise.reject(error))
+        .catch(error => error === memberController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+        .catch(error => console.error(error) || res.sendStatus(500));  
+    }
+  });
   router.get('/:idMember([0-9a-fA-F]{24})/organizationsInvited');
 
 

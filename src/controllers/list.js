@@ -35,6 +35,7 @@ module.exports = {
     Board.findOne({
       _id: query.idBoard,
     })
+    .exec()
       // .then( a => console.log(a))
       .then(board => board ? board : Promise.reject(NOT_FOUND))
       .then(board => board.isUserAllowed(user && user.idUser) ? board : Promise.reject(IS_PRIVATE))
