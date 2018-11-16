@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
     bio: String,
     initials: String,
     memberType: String, // ?
-    loginType: String, // Google or normal I assume
+    loginType: String, // Google or normal  
     hashpass: String, // Password hash
     saltpass: String, // Password hash salt
     preferences: {

@@ -1,4 +1,5 @@
 const Card = require('../models/Card');
+const List = require('../models/List');
 const Board = require('../models/Board');
 const requestError = require('../util/errorHandler');
 
@@ -127,7 +128,24 @@ const cardController = {
                             .then( board => board.isUserAllowed(user && user.idUser) ? board : Promise.reject(IS_PRIVATE))
                             .then( board => Card.find({idList: query.idList}) )           
         )
-    }
+    },
+
+      /**
+   * @desc add card in board 
+   * @type {Promise}
+   * @param {Object} query, {idList}
+   * @throws IS_PRIVATE
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  createInList: (query, user) => (
+    List.findOne({
+      _id: query.idList,
+    })
+      // .then( a => console.log(a))
+      .then(list => list ? list : Promise.reject(NOT_FOUND))
+      .then(list => (new Card({...query.createdCard, idList: list._id })).save()) 
+  ),
 }
 
 module.exports = cardController;
