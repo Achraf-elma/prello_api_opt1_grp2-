@@ -46,7 +46,6 @@ module.exports = (httpServer) => {
       socket.on(socketEvents.dispatch, (action) => {
         console.log("Dispatch", action.type, "in room", idBoard);
         dispatcher(action, socket.credentials)
-        .then(a => console.log(a) || a )
         .then( ok => socket.to(idBoard).broadcast.emit(socketEvents.dispatch, action))
         .catch(error => console.error(error));
       });

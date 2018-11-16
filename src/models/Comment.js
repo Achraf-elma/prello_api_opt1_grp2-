@@ -9,14 +9,14 @@ const commentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Card'
     },
-    idAuthor: {
+    idMember: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     },
-    idMembersInvolded: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User'
-    }],
+    fullName: {
+        type: String,
+        default: 'User'
+    },
     isClosed: { 
         type: Boolean, 
         default: false
@@ -24,6 +24,16 @@ const commentSchema = mongoose.Schema({
 },
 {
     timestamps: true
+});
+
+// Duplicate the ID field.
+commentSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+commentSchema.set('toJSON', {
+    virtuals: true
 });
 
 module.exports = mongoose.model('Comment', commentSchema);

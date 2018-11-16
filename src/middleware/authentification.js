@@ -24,7 +24,7 @@ module.exports = {
   "tokenize": (user) => {
     let lightUser = {
       idUser: user._id,
-      fullname: user.fullname,
+      fullName: user.fullName,
       email: user.email,
       memberType: user.memberType,
       expires: TOKEN_PERIME ? Date.now() + TOKEN_PERIME : Date.now() * Date.now() ,
