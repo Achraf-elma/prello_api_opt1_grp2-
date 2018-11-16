@@ -39,20 +39,48 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     .then(card => console.log(card))
     .catch(error => reject('error dispatcher '+ action.type + error))
 
-
+    // -----------------UPDATE CARD ACTIONS -----------------
     case SET_CARD_NAME:
-      console.log('SET NAME TO CARD', action)
       const idCard= action.payload.id; 
-      const newName = action.payload ; 
+      const newValue = action.payload.name ; 
 
-      cardController.updateCardName ({ idCard, newName })
+      cardController.updateCardName ({ idCard, newValue })
       .then(card => console.log(card))
       .catch(error => reject('error dispatcher '+ action.type + error))
 
     case SET_CARD_DESC:
+      const idCard= action.payload.id; 
+      const newValue = action.payload.desc ; 
+      cardController.updateCardDesc ({ idCard, newValue })
+      .then(card => console.log(card))
+      .catch(error => reject('error dispatcher '+ action.type + error))
+
     case SET_CARD_DUE_DATE:
+    console.log('SET NAME TO CARD', action)
+      const idCard= action.payload.id; 
+      const newValue = action.payload.dueDate ; 
+
+      cardController.updateCardName ({ idCard, newValue })
+      .then(card => console.log(card))
+      .catch(error => reject('error dispatcher '+ action.type + error))
+
     case SET_CARD_POSITION:
+    console.log('SET NAME TO CARD', action)
+      const idCard= action.payload.id; 
+      const newValue = action.payload.position ; 
+
+      cardController.updateCardName ({ idCard, newValue })
+      .then(card => console.log(card))
+      .catch(error => reject('error dispatcher '+ action.type + error))
+
     case SET_CARD_CLOSED:
+    console.log('SET NAME TO CARD', action)
+      const idCard= action.payload.id; 
+      const newValue = action.payload.closed ; 
+
+      cardController.updateCardClosed ({ idCard, newValue })
+      .then(card => console.log(card))
+      .catch(error => reject('error dispatcher '+ action.type + error))
     case SET_CARD_LIST:
     case ASSIGN_LABEL_TO_CARD:
     case ASSIGN_CHECKLIST_TO_CARD:

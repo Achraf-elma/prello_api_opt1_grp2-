@@ -141,7 +141,6 @@ const cardController = {
     List.findOne({
       _id: query.idList,
     })
-      // .then( a => console.log(a))
       .then(list => list ? list : Promise.reject(NOT_FOUND))
       .then(list => (new Card({...query.createdCard, idList: list._id })).save()) 
   ),
@@ -155,12 +154,91 @@ const cardController = {
    */
   updateCardName: (query, user) => (
     Card.findOne({
-      _id: query.id,
+      _id: query.idCard,
     })
-      // .then( a => console.log(a))
       .then(card => card ? card : Promise.reject(NOT_FOUND))
-      .then(card => ({ ...card, name : query.newName }.save() )
-  ),
+      .then(card => ({ ...card, name : query.newValue }.save() )
+  )),
+
+   /**
+   * @desc update desc in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardDesc: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, description : query.newValue }.save() )
+  )),
+
+
+   /**
+   * @desc update duedate in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardDuedate: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, dueDate : query.newValue }.save() )
+  )),
+
+
+   /**
+   * @desc update closed in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardClosed: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, isClosed : query.newValue }.save() )
+  )),
+
+  /**
+   * @desc update position in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardPosition: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, position : query.newValue}.save() )
+  )),
+
+
+   /**
+   * @desc update due complete in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardDueComplete: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, dueComplete : query.newValue}.save() )
+  )),
+
+
 
   
 }
