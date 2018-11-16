@@ -134,7 +134,6 @@ const cardController = {
    * @desc add card in board 
    * @type {Promise}
    * @param {Object} query, {idList}
-   * @throws IS_PRIVATE
    * @throws NOT_FOUND
    * @returns [action]
    */
@@ -146,6 +145,24 @@ const cardController = {
       .then(list => list ? list : Promise.reject(NOT_FOUND))
       .then(list => (new Card({...query.createdCard, idList: list._id })).save()) 
   ),
+
+   /**
+   * @desc update name in a card
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  updateCardName: (query, user) => (
+    Card.findOne({
+      _id: query.id,
+    })
+      // .then( a => console.log(a))
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, name : query.newName }.save() )
+  ),
+
+  
 }
 
 module.exports = cardController;
