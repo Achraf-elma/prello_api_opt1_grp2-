@@ -1,6 +1,7 @@
 const mockUser = require('../fakeData/user.json');
 const mockOrganization = require('../fakeData/organization.json');
 const mockBoard = require('../fakeData/board.json');
+const mockLabel = require('../fakeData/label.json');
 const mockList = require('../fakeData/list.json');
 const mockCheckListItem = require('../fakeData/checkListItem.json');
 
@@ -48,6 +49,10 @@ module.exports = {
             await Board.deleteMany()
             .then(() => console.log("Board dropped"))
             .catch(error => console.log(error));
+            await Label.deleteMany()
+            .then(() => console.log("Labels dropped"))
+            .catch(error => console.log(error));
+            
             /*await List.deleteMany()
             .then(() => console.log("List dropped"))
             .catch(error => console.log(error));
@@ -74,6 +79,13 @@ module.exports = {
                                                         .catch(err => console.log(err))
                 ))
                 .then(() => console.log("Board filled"))
+                .catch(error => console.log(error));
+
+                await Promise.all(mockLabel.map(
+                    async data => new Label(data).save().then(() => console.log("label saved"))
+                                                        .catch(err => console.log(err))
+                ))
+                .then(() => console.log("Labels filled"))
                 .catch(error => console.log(error));
                 /*await Promise.all(mockList.map(
                     async data => new List(data).save()

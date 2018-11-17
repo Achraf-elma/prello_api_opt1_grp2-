@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const LabelSchema = mongoose.Schema({
-    id: {
-        type:String,
-        required:true
-    },
     name: {
         type: String, 
         required: true
@@ -13,7 +9,7 @@ const LabelSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Card'
     },
-    idBoards: {
+    idBoard: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Board'
     },

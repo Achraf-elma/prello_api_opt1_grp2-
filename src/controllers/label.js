@@ -1,5 +1,7 @@
 const Label = require('../models/Label');
 const Board = require('../models/Board');
+const Card = require('../models/Card');
+
 
 const IS_PRIVATE = "User cannot see target board";
 const NOT_FOUND = "No board match given id";
@@ -23,6 +25,9 @@ module.exports = {
     })
     .then(board => board ? board : Promise.reject(NOT_FOUND))
     .then(board => Label.find({ idBoard: board._id }) )
+    
+
+
 
    ),
 
@@ -35,10 +40,11 @@ module.exports = {
    * @returns [action]
    */
   createInCard: (query, user) => (
-    Label.findOne({
+    Card.findOne({
       _id: query.idCard,
     })
-      .then(label => label ? label : Promise.reject(NOT_FOUND))
-      .then(label => (new Label({...query.createdLabel, idCard: card._id })).save()) 
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => (new Label({...query.createdLabel, idCard: card._id })).save())
+     
   ),
 }
