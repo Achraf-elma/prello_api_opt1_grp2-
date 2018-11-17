@@ -59,4 +59,5 @@ module.exports = {
       .then(board => board.isUserAllowed(user && user.idUser) ? board : Promise.reject(IS_PRIVATE))
       .then(board => (new List({...query.createdList, idBoard: board._id })).save()) 
   ),
+  
 }

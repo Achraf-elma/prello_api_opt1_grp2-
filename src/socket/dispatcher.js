@@ -13,6 +13,7 @@ const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
 const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 const SET_CARD_ALL_DAY = "@@card/SET_CARD_ALL_DAY"
 const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
+const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD"
 
 
 const listController = require('../controllers/list');
@@ -41,8 +42,15 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     case ADD_LABEL_TO_CARD:
       var idCard = action.payload.idCard;
       var createdLabel = action.payload;
-
       return labelController.createInCard({ idCard, createdLabel }).then(resolve, reject);
+
+    // -----------------Add Label to Board -----------------
+    case ADD_SET_LABEL_TO_BOARD:
+    console.log("-------------- dispatcher.js add labeltobaord")
+    var idBoard = action.payload.idBoard;
+    var createdLabel = action.payload;
+
+      return labelController.setLabelInBoard({ idBoard, createdLabel }).then(resolve, reject);
     // -----------------UPDATE CARD ACTIONS -----------------
     case SET_CARD_NAME:
       var idCard = action.payload.id;

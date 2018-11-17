@@ -49,4 +49,13 @@ const cardSchema = mongoose.Schema({
     timestamps: true
 });
 
+// Duplicate the ID field.
+cardSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+cardSchema.set('toJSON', {
+    virtuals: true
+});
 module.exports = mongoose.model('Card', cardSchema);

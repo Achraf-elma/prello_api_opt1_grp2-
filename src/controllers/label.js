@@ -47,4 +47,18 @@ module.exports = {
       .then(card => (new Label({...query.createdLabel, idCard: card._id })).save())
      
   ),
+
+  setLabelInBoard: (query, user) => (
+    Board.findOne({
+      _id: query.idBoard,
+    })     
+    .then(board => board ? board : Promise.reject(NOT_FOUND))
+    .then(board => board.updateOne({
+      labelNames: {
+        ...board.labelNames,
+        [query.createdLabel.color] : query.createdLabel.name
+      }}
+    ))
+  )
+
 }
