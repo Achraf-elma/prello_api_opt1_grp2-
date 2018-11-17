@@ -129,6 +129,14 @@ module.exports = {
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
   ),
+
+  addOrganization: (query, user) => (
+    Board.findById( query.idBoard )
+      .exec()
+      .then(board => board || Promise.reject(NOT_FOUND))
+      .then(board => board.idOwner.equals(user && user.idUser) ? board : Promise.reject(NOT_OWNER))
+      .then(board => board.updateOne({$push: {idOrganizations: query.idOrganization}}))
+  ),
   /**
    * @desc remove member from the board
    * @type {Promise}
@@ -154,9 +162,9 @@ module.exports = {
     Organization.findOne({
       _id: query.idOrganization,
     })
-      .then(organization => organzation ? organization : Promise.reject(NOT_FOUND))
+      .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
       .then(organization => organization.isUserAllowed(user && user.idUser) ? organization : Promise.reject(IS_PRIVATE))
-      .then(organization => Board.find({ idOrganization: organization._id }))
+      .then(organization => Board.find({ idOrganizations: organization._id }))
   ),
 
   findByMember: (query, user) => (

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 const organizationSchema = mongoose.Schema({
-    displayName: String,
+    name: String,
     desc: String,
     website: String,
     idMembers: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     }],
-    idAdmin: {
+    idOwner: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     }
@@ -20,8 +20,18 @@ const organizationSchema = mongoose.Schema({
 organizationSchema.methods.isUserAllowed = function(idUser){
     return (
         this.idMembers.includes(idUser) ||
-        this.idAdmin === idUser
+        this.idOwner.equals(idUser)
     );
 };
+
+// Duplicate the ID field.
+organizationSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+organizationSchema.set('toJSON', {
+    virtuals: true
+});
 
 module.exports = mongoose.model('Organization', organizationSchema)

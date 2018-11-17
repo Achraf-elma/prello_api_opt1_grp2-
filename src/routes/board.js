@@ -174,7 +174,7 @@ router.get('/:idBoard([0-9a-fA-F]{24})/labels', (req, res) => {
  */
 router.put('/:idBoard([0-9a-fA-F]{24})', (req, res) => {
   let idBoard = req.params.idBoard;
-  let upsertBoard = req.body;
+  let upsertBoard = {_id: idBoard, ...req.body};
   let user = req.user;
   boardController.upsert({ idBoard, upsertBoard }, user)
     .then(board => res.json(board))
@@ -207,6 +207,18 @@ router.put('/:idBoard([0-9a-fA-F]{24})/member/:idMember([0-9a-fA-F]{24})', (req,
       .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
       .catch(error => console.error(error) || res.sendStatus(500));
   }
+});
+
+router.put("/:idBoard([0-9a-fA-F]{24})/organizations/:idOrganization([0-9a-fA-F]{24})", (req, res) => {
+  const idBoard = req.params.idBoard;
+  const idOrganization = req.params.idOrganization;
+  const user = req.user;
+  boardController.addOrganization({ idBoard, idOrganization }, user)
+    .then(board => res.sendStatus(204))
+    .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+    .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
 });
 
 /**

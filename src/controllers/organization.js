@@ -42,12 +42,13 @@ module.exports = {
           .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
           .then(organization => organization.isUserAllowed(user && user.idUser) ? [].concat([], organization.idMembers, organization.idAdmin) : Promise.reject(IS_PRIVATE))
       ),
+    /* work */
     findByMember: (query, user) => (
-      Organization.find({ idMembers: query.idMember })
+      Organization.find({$or:[{idMembers: query.idMember}, {idOwner: query.idMember}]})
         .exec()
         .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
         .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
-    )
+    ),
 
   /**
    * @desc upsert one organization
@@ -61,11 +62,9 @@ module.exports = {
   upsert:(query, user) => (
     Organization.findById(query.idOrganization)
       .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
-      .then(organization => organization.idAdmin === (user && user.idUser) ? organization.save(query.updatedOrganization) : Promise.reject(NOT_ADMIN))
-      .catch(error => error === NOT_FOUND ? (new Organization(query.updatedOrganization)).save() : Promise.reject(error))
+      .then(organization => organization.idAdmin === (user && user.idUser) ? organization.save(query.upsertOrganization) : Promise.reject(NOT_ADMIN))
+      .catch(error => error === NOT_FOUND ? (new Organization(query.upsertOrganization)).save() : Promise.reject(error))
   ),
-
-
   addMember:(query, user) => (
     Organization.findById(query.idOrganization)
     .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
@@ -91,7 +90,11 @@ module.exports = {
       ))
   ),
 
-
-
+  addBoard:(query, user) => (
+    Organization.findById(query.idOrganization)
+    .then( organization => organization ? organization : Promise.reject(NOT_FOUND))
+    .then( organization => organization.isUserAllowed(user && user.idUser) ? organization : Promise.reject(IS_PRIVATE))
+    .then( organization => organization.save({$push:{idBoards: query.idBoard}}))
+  )
 }
     
