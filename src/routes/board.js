@@ -148,6 +148,25 @@ router.get('/:idBoard([0-9a-fA-F]{24})/members', (req, res) => {
 });
 
 /**
+ * @desc get all labels of a board,
+ * @param idBoard
+ * @code 401 if board is private and user logged out
+ * @code 403 if board is private and user isn't member
+ * @code 404 if board doesn't exist
+ */
+router.get('/:idBoard([0-9a-fA-F]{24})/labels', (req, res) => {
+  let idBoard = req.params.idBoard;
+  let user = req.user;
+  labelController.findByBoard({ idBoard }, user)
+    .then(labels => res.json(labels))
+    .catch(error => error === boardController.WRONG_PARAMS ? res.status(400).json({ error }) : Promise.reject(error))
+    .catch(error => error === labelController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    .catch(error => error === labelController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+    .catch(error => error === labelController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
+});
+
+/**
  * @desc upsert a board,
  * @param idBoard
  * @code 401 if user logged out

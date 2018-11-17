@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
 
 const LabelSchema = mongoose.Schema({
+    id: {
+        type:String,
+        required:true
+    },
     name: {
         type: String, 
         required: true
     },
-    idBoard: {
+    idCard: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Card'
+    },
+    idBoards: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Board'
     },

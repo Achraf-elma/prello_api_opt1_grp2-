@@ -10,6 +10,9 @@ const boardSchema = mongoose.Schema({
         default: [],
         ref: 'User'
     }],
+    labelNames: [{
+        type : Object
+    }],
     idOrganizations: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Organization'

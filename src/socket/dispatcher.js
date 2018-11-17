@@ -11,10 +11,12 @@ const SET_CARD_BOARD = "@@card/SET_CARD_BOARD"
 const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
 const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
 const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
+const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
 
 
 const listController = require('../controllers/list'); 
 const cardController = require('../controllers/card'); 
+const labelController = require('../controllers/label'); 
 
 
 const dispatcher = (action, user) => new Promise((resolve, reject) => {
@@ -37,6 +39,16 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     return cardController.createInList ({ idList, createdCard })
     .catch(error => reject('error dispatcher '+ action.type + error))
     break; 
+
+     // -----------------Add Label to Card -----------------
+     case ADD_LABEL_TO_CARD:
+     const idCard = action.payload.idCard; 
+     const createdLabel = action.payload ; 
+ 
+     return labelController.createInCard ({ idCard, createdLabel })
+     .then(card => console.log(card))
+     .catch(error => reject('error dispatcher '+ action.type + error))
+      break;
     // -----------------UPDATE CARD ACTIONS -----------------
     case SET_CARD_NAME:
     var idCard= action.payload.id; 
@@ -110,9 +122,19 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
 
 
     case SET_CARD_LIST:
+      console.log('SET NAME TO CARD', action)
+      const idCard= action.payload.id; 
+      const newValue = action.payload.isClosed ; 
+
+      cardController.updateCardClosed ({ idCard, newValue })
+      .then(card => console.log(card))
+      .catch(error => reject('error dispatcher '+ action.type + error))
     case ASSIGN_LABEL_TO_CARD:
     case ASSIGN_CHECKLIST_TO_CARD:
     case ASSIGN_MEMBER_TO_CARD:
+
+
+    
 
 
 
