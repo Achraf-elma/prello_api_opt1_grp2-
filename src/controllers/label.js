@@ -27,8 +27,6 @@ module.exports = {
     .then(board => Label.find({ idBoard: board._id }) )
     
 
-
-
    ),
 
    
@@ -44,7 +42,7 @@ module.exports = {
       _id: query.idCard,
     })
       .then(card => card ? card : Promise.reject(NOT_FOUND))
-      .then(card => (new Label({...query.createdLabel, idCard: card._id })).save())
+      .then(card => (new Label({_id : query.createdLabel.id , ...query.createdLabel, idCard: card._id })).save())
      
   ),
 

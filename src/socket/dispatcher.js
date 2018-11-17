@@ -14,7 +14,8 @@ const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 const SET_CARD_ALL_DAY = "@@card/SET_CARD_ALL_DAY"
 const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
 const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD"
-
+const SET_LIST_NAME = "@@list/SET_LIST_NAME"
+const SET_LIST_CLOSED = "@@list/SET_LIST_CLOSED"
 
 const listController = require('../controllers/list');
 const cardController = require('../controllers/card');
@@ -63,6 +64,21 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
       var idCard = action.payload.id;
       var newValue = action.payload.desc;
       return cardController.updateCardDesc({ idCard, newValue }).then(resolve, reject);
+
+
+      // -----------------Set List name-----------------
+
+      case SET_LIST_NAME:
+      var idList = action.payload.id;
+      var newValue = action.payload.name;
+      return listController.updateListName({ idList, newValue }).then(resolve, reject);
+
+      // -----------------Set List closed-----------------
+      
+      case SET_LIST_CLOSED:
+      var idList = action.payload.id;
+      var newValue = action.payload.isClosed;
+      return listController.updateListClosed({ idList, newValue }).then(resolve, reject);
     // -----------------Set card due date-----------------
 
     case SET_CARD_DUE_DATE:

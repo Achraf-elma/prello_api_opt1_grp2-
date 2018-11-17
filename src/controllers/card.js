@@ -144,7 +144,8 @@ const cardController = {
                 })
                 // .then( a => console.log(a))
                 .then(list => list ? list : Promise.reject(NOT_FOUND))
-                .then(list => (new Card({...query.createdCard, idList: list._id })).save()) 
+                .then(list => (new Card({_id : query.createdCard.id,...query.createdCard, idList: list._id })).save()) 
+      
                 ),
                 
                 
