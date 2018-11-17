@@ -5,7 +5,7 @@
         "email": "h",
         "bio": "Animal lover",
         "initials": "T.O",
-        "memberType": "admin",
+        "memberType": "User",
         "loginType": "OAuth",
         "hashpass": "8d9a4941c7084aff49f055f612e5fed3c2c6448b35a3d5f56f44cf3279869cc00d5832716e74142bca8ef7779f28b734f8bfb97154fb6dc3a83a6f99da8eead8c60b8d0ab9e4c935de3f472d8cb91b3911cfc7282f26aada1123b6aba6eb26cfd3edeff26d4ac4d5152657433e58b0cbd5f171d9958ddb16e76d7d938807cc83",
         "saltpass": "f244d28051f793b91d72ac3f476bb69c16c780aef8539e494cda43506f661c93"
@@ -17,7 +17,7 @@
         "email": "t",
         "bio": "Food love©vr",
         "initials": "T.I",
-        "memberType": "User",
+        "memberType": "Admin",
         "loginType": "Prello",
         "hashpass": "8d9a4941c7084aff49f055f612e5fed3c2c6448b35a3d5f56f44cf3279869cc00d5832716e74142bca8ef7779f28b734f8bfb97154fb6dc3a83a6f99da8eead8c60b8d0ab9e4c935de3f472d8cb91b3911cfc7282f26aada1123b6aba6eb26cfd3edeff26d4ac4d5152657433e58b0cbd5f171d9958ddb16e76d7d938807cc83",
         "saltpass": "f244d28051f793b91d72ac3f476bb69c16c780aef8539e494cda43506f661c93"
