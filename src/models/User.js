@@ -31,6 +31,7 @@ const HASH_LENGTH = 128;
 UserSchema.methods.setPassword = function (password) {
     this.saltpass = crypto.randomBytes(SALT_LENGTH).toString('hex');
     this.hashpass = crypto.pbkdf2Sync(password, this.saltpass, HASH_ROUND, HASH_LENGTH, `sha512`).toString(`hex`);
+    console.log("------------HASHH ", this)
     return this;
 };
 

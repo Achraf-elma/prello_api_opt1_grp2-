@@ -62,7 +62,7 @@ app.get('/', function(request, res){
     "dueComplete": false,
     "isClosed": false,
     "_id": "5bdb0ae78f8b4ad5c0298197",
-    "description": "Implement features",
+    "desc": "Implement features",
     "name": "Implement API",
     "dueDate": "2018-11-01T14:17:11.472Z",
     "position": 0.3,

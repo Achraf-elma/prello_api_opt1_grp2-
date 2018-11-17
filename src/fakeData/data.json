@@ -297,7 +297,7 @@
     "cards":{
         "_model": "Card",
         "c1":{
-            "description":"This is card 1 of board 1 ",
+            "desc":"This is card 1 of board 1 ",
             "name": "Card 1 list 1",
             "dueDate": "=new Date(2018, 11, 09)",
             "dueComple": true,
@@ -354,7 +354,7 @@
             "position": 4
         },
         "c12":{
-            "description":"This is card 1 of board 2 ",
+            "desc":"This is card 1 of board 2 ",
             "name": "Card 1 list 1",
             "dueDate": "=new Date(2018, 11, 09)",
             "dueComple": true,
@@ -384,7 +384,7 @@
             "position": 0.5
         },
         "c22":{
-            "description":"This is card 2 of board 2",
+            "desc":"This is card 2 of board 2",
             "name": "Card 2 list 2",
             "dueDate": "=new Date(2018, 11, 09)",
             "dueComple": true,
@@ -414,7 +414,7 @@
     "boards":{
         "_model": "Board",
         "b1":{
-            "description": "This is Board 1",
+            "desc": "This is Board 1",
             "name": "Board 1",
             "idMembers": [
                 {
@@ -434,7 +434,7 @@
             "isClosed": false
         },
         "b2":{
-            "description": "This is Board 2",
+            "desc": "This is Board 2",
             "name": "Board 2",
             "idMembers": [
                 {
@@ -454,7 +454,7 @@
             "isClosed": false
         },
         "b3":{
-            "description": "This is Board 1",
+            "desc": "This is Board 1",
             "name": "Board 1",
             "idMembers": [
                 {
@@ -474,7 +474,7 @@
             "isClosed": true
         },
         "b4":{
-            "description": "This is Board 1",
+            "desc": "This is Board 1",
             "name": "Board 1",
             "idMembers": [
                 {
