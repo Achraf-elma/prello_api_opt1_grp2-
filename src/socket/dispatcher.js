@@ -42,8 +42,8 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
 
      // -----------------Add Label to Card -----------------
      case ADD_LABEL_TO_CARD:
-     const idCard = action.payload.idCard; 
-     const createdLabel = action.payload ; 
+     var idCard = action.payload.idCard; 
+     var createdLabel = action.payload ; 
  
      return labelController.createInCard ({ idCard, createdLabel })
      .then(card => console.log(card))
@@ -109,6 +109,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
       .then(card => console.log(card))
       .catch(error => reject('error dispatcher '+ action.type + error))
       break; 
+
       // -----------------SET CARD DUECOMPLETE -----------------
 
       case SET_CARD_DUE_COMPLETE:
