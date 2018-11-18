@@ -87,7 +87,7 @@ router.post('/:idOrganization([0-9a-fA-F]{24})/members/:idMember([0-9a-fA-F]{24}
 router.delete('/:idOrganization([0-9a-fA-F]{24})', (req, res) => {
   let idOrganization = req.params.idOrganization;
   let user = req.user;
-  organizationController.disable({ idOrganization }, user)
+  organizationController.removeOrganization({ idOrganization }, user)
     .then(organization => res.sendStatus(204))
     .catch(error => error === organizationController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
     .catch(error => error === organizationController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))

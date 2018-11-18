@@ -56,7 +56,7 @@ module.exports = {
   upsert: (query, user) => (
     Organization.findById(query.idOrganization)
       .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
-      .then(organization => organization.idAdmin === (user && user.idUser) ? organization.save(query.upsertOrganization) : Promise.reject(NOT_OWNER))
+      .then(organization => organization.idOwner.equals(user && user.idUser) ? organization.updateOne(query.upsertOrganization) : Promise.reject(NOT_OWNER))
       .catch(error => error === NOT_FOUND ? (new Organization(query.upsertOrganization)).save() : Promise.reject(error))
   ),
   addMember: (query, user) => (
@@ -76,10 +76,15 @@ module.exports = {
     Organization.findById(query.idOrganization)
       .then(organization => organization ? organization : Promise.reject(NOT_FOUND))
       .then(organization => (
-        organization.idOwner.equals(user && user.idUser) ?
+        organization.idOwner.equals(user && user.idUser) ||
+        (user && user.idUser === query.idMember) ?
           organization.updateOne({ $pull: {idMembers: query.idMember }}) :
           Promise.reject(NOT_OWNER)
       ))
+  ),
+  removeOrganization: (query, user) => (
+    Organization.deleteOne({_id:query.idOrganization, idOwner: user && user.idUser})
+    .then( done => done.n || Promise.reject(NOT_OWNER))
   ),
   addBoard: (query, user) => (
     Organization.findById(query.idOrganization)
