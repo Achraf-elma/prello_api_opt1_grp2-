@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
+const Board = require('../models/Board');
+
 const seeder = require('../db/seeder.js');
 
 //Controllers
@@ -126,6 +128,8 @@ router.post('/:idList/moveAllCards', (req, res) => {
 
 });
 
+// lists/djdiqjd
+// returns all the lists of a user
 
 /**
  * Get lists of a user

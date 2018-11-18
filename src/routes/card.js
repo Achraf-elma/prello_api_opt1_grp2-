@@ -14,33 +14,34 @@ router.get('/{id}', (req, res) => {
 });
 
 /**
- * Get a card given its id
+ * Get cards given 
  */
-router.get('/', (req, res) => {
-  let user = req.user;
-  let {
-    boards,
-    lists,
-    labels,
-    duedate,
-    page,
-    perpage,
-    duecomplete,
-  } = req.query;
+// 
+//   let user = req.user;
+//   let {
+//     boards,
+//     lists,
+//     labels,
+//     duedate,
+//     page,
+//     perpage,
+//     duecomplete,
+//   } = req.query;
   
-  let query = {
-    boards: boards && boards.split(','),
-    lists: lists && lists.split(','),
-    labels: labels && labels.split(','),
-    duedate: (duedate%1 > -1) ? duedate*1 : undefined,
-    page: (page % 1 > -1) ? page * 1 : undefined,
-    perpage: (perpage % 1 > -1) ? perpage * 1 : undefined,
-    duecomplete: duecomplete === "true" || (duecomplete === "false" ? false : undefined),
-  };
-  cardController.findWithFilters( query, user )
-  .then(cards => res.json(cards))
-  .catch( error => console.error(error) || res.sendStatus(500));
-});
+//   let query = {
+//     boards: boards && boards.split(','),
+//     lists: lists && lists.split(','),
+//     labels: labels && labels.split(','),
+//     duedate: (duedate%1 > -1) ? duedate*1 : undefined,
+//     page: (page % 1 > -1) ? page * 1 : undefined,
+//     perpage: (perpage % 1 > -1) ? perpage * 1 : undefined,
+//     duecomplete: duecomplete === "true" || (duecomplete === "false" ? false : undefined),
+//   };
+//   cardController.findWithFilters( query, user )
+//   .then(cards => res.json(cards))
+//   .catch( error => console.error(error) || res.sendStatus(500));
+// });
+
 
 
 /**
@@ -280,5 +281,15 @@ router.get('/:idCard([0-9a-fA-F]{24})/checklists', (req, res) => {
 
 
 
+
+
+
+
+router.get('/:idMember', (req, res) => {
+  cardController.findWithFilters( query, user )
+    .then(cards => res.json(cards))
+    .catch( error => console.error(error) || res.sendStatus(500));
+  
+  });
 
 module.exports=router;
