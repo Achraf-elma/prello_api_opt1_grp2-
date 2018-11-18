@@ -3,7 +3,8 @@ const mockOrganization = require('../fakeData/organization.json');
 const mockBoard = require('../fakeData/board.json');
 const mockLabel = require('../fakeData/label.json');
 const mockList = require('../fakeData/list.json');
-const mockCheckListItem = require('../fakeData/checkListItem.json');
+const mockCheckList = require('../fakeData/checkList.json');
+const mockCard = require('../fakeData/card.json');
 
 
 const Action = require('../models/Action');
@@ -52,13 +53,17 @@ module.exports = {
             await Label.deleteMany()
             .then(() => console.log("Labels dropped"))
             .catch(error => console.log(error));
-            
-            /*await List.deleteMany()
+            await List.deleteMany()
             .then(() => console.log("List dropped"))
             .catch(error => console.log(error));
-            await CheckListItem.deleteMany()
-            .then(() => console.log("CheckListItem dropped"))
-            .catch(error => console.log(error));*/
+            await Card.deleteMany()
+            .then(() => console.log("Card dropped"))
+            .catch(error => console.log(error));
+            await CheckList.deleteMany()
+            .then(() => console.log("CheckList dropped"))
+            .catch(error => console.log(error));
+            
+
         })().then(console.log("Database dropped"));
         await (async() => {
                 console.log("Initializing databases");
@@ -87,16 +92,22 @@ module.exports = {
                 ))
                 .then(() => console.log("Labels filled"))
                 .catch(error => console.log(error));
-                /*await Promise.all(mockList.map(
+                await Promise.all(mockList.map(
                     async data => new List(data).save()
                 ))
                 .then(() => console.log("List filled"))
                 .catch(error => console.log(error));
-                await Promise.all(mockCheckListItem.map(
+                await Promise.all(mockCard.map(
+                    async data => new Card(data).save()
+                ))
+                .then(() => console.log("Card filled"))
+                .catch(error => console.log(error));
+                await Promise.all(mockCheckList.map(
                     async data => new CheckListItem(data).save()
                 ))
-                .then(() => console.log("CheckListItem filled"))
-                .catch(error => console.log(error));*/
+                .then(() => console.log("CheckList filled"))
+                .catch(error => console.log(error));
+
             })().then("Database filled");
         
     }

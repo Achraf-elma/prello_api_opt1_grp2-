@@ -1,10 +1,17 @@
 [
     {
             
-            "_id" : "5bf02b7d18afc86e2e6f7f01", 
-            "name" : "ddde", 
-            "idCard" : "5bef815e34266c38f251a3d0", 
-            "idBoard" : "b1b1b0b1b1b0b1b1b0b1b1b0", 
-            "color" : "#000000"       
-        }
-    ]
+        "_id" : "5bf02b7d18afc86e2e6f7f01", 
+        "name" : "label1", 
+        "idCard" : "d1d1d0d1d1d0d1d1d0d1d1d0", 
+        "idBoard" : "b1b1b0b1b1b0b1b1b0b1b1b0", 
+        "color" : "#000000"       
+    },
+    {
+        "_id" : "5bf02b7d18afc86e2e9f7f01", 
+        "name" : "label2", 
+        "idCard" : "a__________0", 
+        "idBoard" : "b1b1b0b1b1b0b1b1b0b1b1b0", 
+        "color" : "#000000"     
+    }
+]

@@ -1,94 +1,38 @@
 [
     {
-        "desc":"This is card 1 of board 1 ",
-        "name": "Card 1 list 1",
-        "dueDate": "=new Date(2018, 11, 09)",
-        "dueComplete": true,
-        "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0",
-        "idList": "bc1bc0bc1bc0bc1bc0bc1bc0",
-        "idMembers": [
-            {
-                "idMember": "e3e3e0e3e3e0e3e3e0e3e3e0"
-            },
-            {
-                "idMember": "e2e2e0e2e2e0e2e2e0e2e2e0"
-            }
-        ],
-        "idCheckLists": [
-            {
-                "idCheckList": "ce1ce0ce1ce0ce1ce0ce1ce0"
-            }
-        ],
-        "idLabels": [
-            {
-                "idLabel": "ab1ab0ab1ab0ab1ab0ab1ab0"
-            },
-            {
-                "idLabel": "ab2ab0ab2ab0ab2ab0ab2ab0"
-            }
-        ],
-        "position": 0.5
-    },
-    {
+        "_id": "a__________0",
         "description":"This is card 2 of board 1",
         "name": "Card 2 list 2",
-        "dueDate": "=new Date(2018, 11, 09)",
         "dueComplete": true,
         "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0",
         "idList": "bc2bc0bc2bc0bc2bc0bc2bc0",
-        "idMembers": [
-            "e3e3e0e3e3e0e3e3e0e3e3e0"
-        ],
-        "idCheckLists": [
-            "ce1ce0ce1ce0ce1ce0ce1ce0"
-        ],
-        "idLabels": [
-            "ab1ab0ab1ab0ab1ab0ab1ab0",
-            "ab2ab0ab2ab0ab2ab0ab2ab0"
-        ],
+        "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0"],
+        "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
+        "idLabels": ["5bf02b7d18afc86e2e9f7f01"],
         "position": 4
     },
     {
+        "_id": "5bf02b7d18afc86e2e9f7f01",
         "desc":"This is card 1 of board 2 ",
         "name": "Card 1 list 1",
-        "dueDate": "=new Date(2018, 11, 09)",
         "dueComplete": true,
         "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0",
         "idList": "bc1bc0bc1bc0bc1bc0bc1bc0",
-        "idMembers": [
-            "e3e3e0e3e3e0e3e3e0e3e3e0",
-            "e2e2e0e2e2e0e2e2e0e2e2e0"
-        ],
-        "idCheckLists": [
-            "ce1ce0ce1ce0ce1ce0ce1ce0"
-        ],
-        "idLabels": [
-            "ab1ab0ab1ab0ab1ab0ab1ab0",
-            "ab2ab0ab2ab0ab2ab0ab2ab0"
-        ],
+        "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
+        "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
+        "idLabels": ["ab1ab0ab1ab0ab1ab0ab1ab0","ab2ab0ab2ab0ab2ab0ab2ab0"],
         "position": 0.5 
     },
     {
+        "_id": "azfezfZER234",
         "desc":"This is card 2 of board 2",
         "name": "Card 2 list 2",
-        "dueDate": "=new Date(2018, 11, 09)",
         "dueComplete": true,
         "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0",
         "idList": "bc2bc0bc2bc0bc2bc0bc2bc0",
-        "idMembers": [
-            {
-                "idMember": "e3e3e0e3e3e0e3e3e0e3e3e0"
-            }
-        ],
-        "idCheckLists": [
-            {
-                "idCheckList": "ce1ce0ce1ce0ce1ce0ce1ce0"
-            }
-        ],
-        "idLabels": [
-            "ab1ab0ab1ab0ab1ab0ab1ab0",
-            "ab2ab0ab2ab0ab2ab0ab2ab0"
-        ],
+        "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0"],
+        "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
+        "idLabels": ["ab1ab0ab1ab0ab1ab0ab1ab0", "ab2ab0ab2ab0ab2ab0ab2ab0"],
         "position": 0.5
     }
 ]

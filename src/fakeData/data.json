@@ -211,19 +211,19 @@
         "_model": "CheckListItem",
         "checkListItem1":{
             "name": "Check list item 1",
-            "isChecked": true
+            "completed": true
         },
         "checkListItem2":{
             "name": "Check list item 2",
-            "isChecked": false
+            "completed": false
         },
         "checkListItem3":{
             "name": "Check list item 3",
-            "isChecked": false
+            "completed": false
         },
         "checkListItem4":{
             "name": "Check list item 4",
-            "isChecked": false
+            "completed": false
         }
     },
     "checkLists":{
