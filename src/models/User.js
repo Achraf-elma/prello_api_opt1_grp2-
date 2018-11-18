@@ -24,6 +24,16 @@ const UserSchema = mongoose.Schema({
     _id: false
 });
 
+// Duplicate the ID field.
+UserSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+UserSchema.set('toJSON', {
+    virtuals: true
+});
+
 /** PASSWORD **/
 const SALT_LENGTH = 32;
 const HASH_ROUND = 100;

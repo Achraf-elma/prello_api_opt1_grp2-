@@ -5,21 +5,21 @@ const organizationSchema = mongoose.Schema({
     desc: String,
     website: String,
     idMembers: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     idOwner: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
 },
-{
-    timestamps: true
-});
+    {
+        timestamps: true
+    });
 
-organizationSchema.methods.isUserAllowed = function(idUser){
+organizationSchema.methods.isUserAllowed = function (idUser) {
     return (
-        this.idMembers.includes(idUser) ||
+        this.idMembers.find(member => member.equals(idUser) ||  member._id.equals(idUser)) ||
         this.idOwner.equals(idUser)
     );
 };
