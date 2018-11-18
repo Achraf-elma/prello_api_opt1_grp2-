@@ -17,12 +17,7 @@ const crypto = require('crypto');
  */
 mongoose.connect(process.env.MONGO_URL, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
-    console.log('Successfully connected to MongoDB database.')
     seeder.seed().then((err) => console.log("seeders"));
-    const idCard = "5bf18e32f73d842d555c961e";
-    
-    //CheckList.find({idCard:idCard}).then(data => console.log(data))
-
   })
   .catch((err) => {
       console.error(err);

@@ -22,9 +22,8 @@ module.exports = {
         _id: query.idCard,
     })
     .then(card => card ? card : Promise.reject(NOT_FOUND))
-    .then(card => {console.log(card.isClosed)
-        card.isClosed ? card : Promise.reject(DELETED)})
-    .then(card => CheckList.find({idCard: query.idCard}) )
+    .then(card => !card.isClosed ? card : Promise.reject(DELETED))
+    .then(card => CheckList.find({idCard: query.idCard}))
     .then(checklists => checklists)
 
   ),
