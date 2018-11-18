@@ -5,6 +5,8 @@ const seeder = require('./seeder.js');
 const User = require( '../models/User'); 
 const Board = require('../models/Board');
 const List = require('../models/List');
+
+const Card = require('../models/Card');
 const CheckList = require('../models/CheckList');
 
 const crypto = require('crypto');
@@ -17,8 +19,10 @@ mongoose.connect(process.env.MONGO_URL, { /*promiseLibrary: require('bluebird'),
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
     seeder.seed().then((err) => console.log("seeders"));
-    //const idCard = "p1p1p0p1p1p0p1p1p0p1p1p0";
-    //CheckList.find({idCard: idCard}).then(data => console.log(data))
+    const idCard = "5bf18e32f73d842d555c961e";
+    
+    //CheckList.find({idCard:idCard}).then(data => console.log(data))
+
   })
   .catch((err) => {
       console.error(err);

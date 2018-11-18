@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cardController = require('../controllers/card')
 const commentController = require('../controllers/comment')
+const checklistController = require('../controllers/checklist')
 
 /*************************** GET ***************************/
 
@@ -262,5 +263,22 @@ router.get('/:idCard([0-9a-fA-F]{24})/comments', (req, res) => {
     // .catch(error => error === cardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
     .catch(error => console.error(error) || res.sendStatus(500));
 });
+
+/**
+ * get checklist from idCard
+ */
+router.get('/:idCard([0-9a-fA-F]{24})/checklists', (req, res) => {
+  let idCard = req.params.idCard;
+  let user = req.user;
+  checklistController.findByCard({idCard}, user)
+  .then(checklist => res.json(checklist))
+  .catch(error => console.error(error) || res.sendStatus(500))
+  .catch(error => error === checklistController.DELETED ? res.json(404).json({error}) : Promise.reject(error));
+
+});
+
+
+
+
 
 module.exports=router;

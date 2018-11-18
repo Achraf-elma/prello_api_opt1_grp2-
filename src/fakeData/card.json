@@ -9,6 +9,7 @@
         "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0"],
         "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
         "idLabels": ["5bf02b7d18afc86e2e9f7f01"],
+        "isClosed":false,
         "position": 4
     },
     {
@@ -20,11 +21,12 @@
         "idList": "bc1bc0bc1bc0bc1bc0bc1bc0",
         "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
         "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
+        "isClosed":false,
         "idLabels": ["ab1ab0ab1ab0ab1ab0ab1ab0","ab2ab0ab2ab0ab2ab0ab2ab0"],
         "position": 0.5 
     },
     {
-        "_id": "azfezfZER234",
+        "_id": "5bf18e32f73d842d555c961e",
         "desc":"This is card 2 of board 2",
         "name": "Card 2 list 2",
         "dueComplete": true,
@@ -32,6 +34,7 @@
         "idList": "bc2bc0bc2bc0bc2bc0bc2bc0",
         "idMembers": ["e3e3e0e3e3e0e3e3e0e3e3e0"],
         "idCheckLists": ["ce1ce0ce1ce0ce1ce0ce1ce0"],
+        "isClosed":false,
         "idLabels": ["ab1ab0ab1ab0ab1ab0ab1ab0", "ab2ab0ab2ab0ab2ab0ab2ab0"],
         "position": 0.5
     }

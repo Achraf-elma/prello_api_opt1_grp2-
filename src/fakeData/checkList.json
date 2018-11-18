@@ -1,8 +1,9 @@
 [
 
     {
+        "_id": "ce1ce0ce1ce0ce1ce0ce1ce0",
         "name":"Checklist 1-2",
-        "checkListItem": [
+        "checkListItems": [
             {
                 "name": "checklist item 1",
                 "completed": false
@@ -12,40 +13,7 @@
                 "completed": true
             }
         ],
-        "idCard": "p1p1p0p1p1p0p1p1p0p1p1p0",
+        "idCard": "5bf18e32f73d842d555c961e",
         "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0"
-    },
-
-    {
-        "name":"Checklist 6-7",
-        "checkListItem": [
-            {
-                "name": "checklist item 6",
-                "completed": false
-            },
-            {
-                "name": "checklist item 7",
-                "completed": true
-            }
-        ],
-        "idCard": "d1d1d0d1d1d0d1d1d0d1d1d0",
-        "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0"
-    },
-
-    {
-        "name":"Checklist 8-9",
-        "checkListItem": [
-            {
-                "name": "checklist item 8",
-                "completed": false
-            },
-            {
-                "name": "checklist item 9",
-                "completed": true
-            }
-        ],
-        "idCard": "k1k1k0k1k1k0k1k1k0k1k1k0",
-        "idBoard": "b1b1b0b1b1b0b1b1b0b1b1b0"
-
     }
 ]

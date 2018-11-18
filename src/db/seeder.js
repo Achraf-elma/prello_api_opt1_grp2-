@@ -103,7 +103,7 @@ module.exports = {
                 .then(() => console.log("Card filled"))
                 .catch(error => console.log(error));
                 await Promise.all(mockCheckList.map(
-                    async data => new CheckListItem(data).save()
+                    async data => new CheckList(data).save()
                 ))
                 .then(() => console.log("CheckList filled"))
                 .catch(error => console.log(error));

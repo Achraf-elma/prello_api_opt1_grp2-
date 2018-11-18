@@ -6,7 +6,7 @@ const checkListSchema = mongoose.Schema({
         required: true
     },
     checkListItems: [{
-        type: Object, 
+        type: Object
     }],
     idCard: {
         type: mongoose.Schema.Types.ObjectId,

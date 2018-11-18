@@ -1,2 +1,2 @@
-$ docker build -t prello_api_opt1_grp2 .
-$ docker run -p 8081:27017 prello_api_opt1_grp2
+$ docker build -t prello-api-opt1-g2 .
+$ docker run -p 8081:27017 prello-api-opt1-g2
