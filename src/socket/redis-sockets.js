@@ -34,7 +34,8 @@ module.exports = (httpServer) => {
     
     // Authenticate
     socket.on(socketEvents.authentication, (token) => {
-      Promise.resolve(socket.credentials = decodeToken(token))
+      Promise.resolve(token)
+      .then(token => socket.credentials = decodeToken(token))
         .then(creds => console.log("user:", creds && creds.idUser))
         .catch(error => console.error(error));
     })
