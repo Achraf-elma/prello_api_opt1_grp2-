@@ -17,12 +17,15 @@ const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD";
 const SET_LIST_NAME = "@@list/SET_LIST_NAME";
 const SET_LIST_CLOSED = "@@list/SET_LIST_CLOSED"; 
 const ADD_COMMENT_TO_CARD = "@@COMMENT/ADD_COMMENT_TO_CARD"; 
-
+const ADD_CHECK_LIST = "@@checklist/ADD_CHECK_LIST"; 
+const ADD_CHECKLIST_ITEM = "@@checklist/ADD_CHECKLIST_ITEM"; 
+const DELETE_CHECKLIST_ITEM = "@@checklist/DELETE_CHECKLIST_ITEM"; 
+const SET_CHECK_ITEM_COMPLETED = "@@checkitem/SET_CHECK_ITEM_COMPLETED"; 
 const listController = require('../controllers/list');
 const cardController = require('../controllers/card');
 const labelController = require('../controllers/label');
 const commentController = require('../controllers/comment');
-
+const checklistController = require('../controllers/checklist');
 
 const dispatcher = (action, user) => new Promise((resolve, reject) => {
   switch (action.type) {
@@ -131,7 +134,44 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     case ASSIGN_LABEL_TO_CARD:
     case ASSIGN_CHECKLIST_TO_CARD:
     case ASSIGN_MEMBER_TO_CARD:
+     // -----------------add new check list-----------------
     
+     case ADD_CHECK_LIST:
+     console.log('ADD_CHECK_LIST ', action)
+     var idCard = action.payload.id;
+     var createdCheck = action.payload;
+     
+     return checklistController.createInCard({ idCard, createdCheck }).then(resolve, reject);
+
+     // -----------------add new check list ITEM-----------------
+    
+     case ADD_CHECKLIST_ITEM:
+     console.log('ADD_CHECK_LIST item ', action)
+     var idCheckList = action.payload.id;
+     var newItem = action.payload;
+     
+     return checklistController.addCheckListItem({ idCheckList, newItem }).then(resolve, reject);
+      // -----------------delete check list item-----------------
+          
+      case DELETE_CHECKLIST_ITEM :
+      console.log('ADD_CHECK_LIST item', action)
+      var idCheckList = action.payload.idCheckList;
+      var idItemToDelete = action.payload.idItemToDelete;
+
+      return checklistController.deleteCheckListItem({ idCheckList, idItemToDelete }).then(resolve, reject);
+
+    // -----------------set check list item completed-----------------
+          
+    case SET_CHECK_ITEM_COMPLETED:
+    console.log('ADD_CHECK_LIST item', action)
+    var idCheckList = action.payload.idCheckList;
+    var updateCheckListItem = action.payload.idItemToDelete;
+
+    return checklistController.updateCheckListItemCompleted({ idCheckList, updateCheckListItem }).then(resolve, reject);
+
+
+   
+     
     // ----------------- DEFAULT --------------------
     
     default:

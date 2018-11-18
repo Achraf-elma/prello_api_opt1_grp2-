@@ -29,5 +29,70 @@ module.exports = {
   ),
 
 
+  /**
+   * @desc add check to card 
+   * @type {Promise}
+   * @param {Object} query, {idCard}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  createInCard: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => (new CheckList({_id : query.createdCheck.id , ...query.createdCheck, idCard: query.idCard})).save())
+      .catch(comment => console.log(comment))
+     
+  ),
+
+  /**
+   * @desc update checklistitem in a checklist
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  addCheckListItem: (query, user) => (
+    CheckList.findOne({
+      _id: query.idCheckList,
+    })
+      .then(check => check ? check : Promise.reject(NOT_FOUND))
+      .then(check => ({ ...check, checkListItems : [...card.checkListItems, query.newItem]}.save() )
+  )),
+
+/**
+   * @desc update checklistitem in a checklist
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  deleteCheckListItem: (query, user) => (
+      CheckList.findOne({
+        _id: query.idCheckList,
+      })
+        .then(check => check ? check : Promise.reject(NOT_FOUND))
+        .then(check => check.filter(item=> item.id !== query.idItemToDelete)).save())
+      ,
+  
+
+  /**
+   * @desc update checklistitem in a checklist
+   * @type {Promise}
+   * @param {Object} query, {id}
+   * @throws NOT_FOUND
+   * @returns [action]
+   */
+  /*updateCheckListItemCompleted: (query, user) => (
+    Card.findOne({
+      _id: query.idCard,
+    })
+      .then(card => card ? card : Promise.reject(NOT_FOUND))
+      .then(card => ({ ...card, position : query.newValue}.save() )
+  )),*/
+
+  
+
 
 }
