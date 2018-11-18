@@ -73,28 +73,10 @@ const cardController = {
             * @param {boards?, lists?, labels?, duedate?, duecomplete, perpage, page}
             */
             findWithFilters: (query, user) => {
-                let boardPopulate = query.boards && {
-                    path: 'idBoard',
-                    select: '_id',
-                    option: { $or: [
-                        { isPublic: true },
-                        { idMembers: { $contains: user.idUser } },
-                        { idOwner: user.idUser  }
-                    ]}
-                };
-                
-                return Card.find({$or: [
-                    query.boards && { idBoard: { $in: query.boards } },
-                    query.lists && { idList: { $in: query.lists } },
-                    query.label && { labels: {_id: { $in: query.label } } },
-                    query.duedate && { dueDate: { $lt: query.duedate } },
-                    query.duecomplete !== null && { dueComplete: query.duecomplete }
-                ].filter( a => a ) }, null, {
-                    skip: query.page * query.perpage,
-                    limit: query.perpage,
-                })
-                .populate(boardPopulate)
-                .populate({ path: 'idList', select: 'idBoard', populate: boardPopulate })
+                return Board.find({ $or: [{ idOwner: user && user.idUser }, { idMembers: user && user.idUser }] })
+                .then(data => console.log(data) ||Card.find({ idBoard: { $in: data.map(x => x._id) } }).exec())
+                .catch(error => Promise.reject(error.name === "CastError") ? boardController.WRONG_PARAMS : error)
+                .catch(error => Promise.reject(error.name === "ValidationError" ? boardController.WRONG_PARAMS : error))
             },
             /*,
             findAll: () => { 

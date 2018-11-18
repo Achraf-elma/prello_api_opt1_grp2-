@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 
 const mongoose = require('./db/mongodb');
@@ -30,6 +31,7 @@ app.use(
   '/api',
   bodyParser.urlencoded({extended:false}),
   bodyParser.json(),
+  mongoSanitize(),
   untokenize,
   routes
 );
