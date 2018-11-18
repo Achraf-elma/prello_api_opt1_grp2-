@@ -116,7 +116,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     case SET_CARD_CLOSED:
     console.log('SET NAME TO CARD', action)
     var idCard = action.payload.id;
-    var newValue = action.payload.closed;
+    var newValue = action.payload.idClosed;
     return cardController.updateCardClosed({ idCard, newValue }).then(resolve, reject);
     
     // -----------------SET CARD DUECOMPLETE -----------------
