@@ -26,6 +26,8 @@ module.exports = {
     Board.findOne({
       _id: query.idBoard,
     })
+    .populate({path:"idOrganizations"})
+    .populate({path:"idMembers",select: {hashpass:0,saltpass:0}})
     .exec()
     // .then( a => console.log(a))
     .then( board => board ? board : Promise.reject(NOT_FOUND))
@@ -111,31 +113,19 @@ module.exports = {
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
   ),
-  /**
-   * @desc add member to the board
-   * @type {Promise}
-   * @param {Object} query, {idBoard}
-   * @param {Object} user, user information {idUser}
-   * @throws NOT_OWNER
-   * @throws NOT_FOUND
-   * @throws WRONG_PARAMS
-   * @returns board
-   */
-  addMember: (query, user) => (
-    Board.findById(query.idBoard)
-      .exec()
-      .then(board => board ? board : Promise.reject(NOT_FOUND))
-      .then(board => board.idOwner.equals(user && user.idUser) ? board.save({idMembers: [...board.idMembers, query.idMember]}) : Promise.reject(NOT_OWNER))
-      .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
-      .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
-  ),
 
   addOrganization: (query, user) => (
-    Board.findById( query.idBoard )
-      .exec()
-      .then(board => board || Promise.reject(NOT_FOUND))
-      .then(board => board.idOwner.equals(user && user.idUser) ? board : Promise.reject(NOT_OWNER))
-      .then(board => board.updateOne({$push: {idOrganizations: query.idOrganization}}))
+    Promise.all([
+      Board.findById(query.idBoard).exec()
+        .then(board => board || Promise.reject(NOT_FOUND)),
+      Organization.findById(query.idOrganization).exec()
+        .then(organization => organization || Promise.reject(NOT_FOUND))
+    ])
+      .then(([board, organization]) => (
+        board.idOwner.equals(user && user.idUser) ?
+          board.updateOne({ $push: { idOrganizations: organization._id } }).then(ok => organization) :
+          Promise.reject(NOT_OWNER)
+      ))
   ),
   /**
    * @desc remove member from the board
@@ -152,9 +142,10 @@ module.exports = {
       .exec()
       .then(board => board ? board : Promise.reject(NOT_FOUND))
       .then(board => (
-        board.idOwner.equals(user && user.idUser) ?
-        board.save({ idMembers: board.idMembers.filter( idMember => idMember != query.idMember)}) :
-        Promise.reject(NOT_OWNER)
+        board.idOwner.equals(user && user.idUser) ||
+          (user && user.idUser === query.idMember) ?
+          board.updateOne({ $pull: { idMembers: query.idMember } }) :
+          Promise.reject(NOT_OWNER)
       ))
   ),
 
@@ -172,5 +163,48 @@ module.exports = {
       .exec()
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
-  )
+  ),
+  addMember: (query, user) => (
+    Promise.all([
+      Board.findById(query.idBoard).exec()
+        .then(board => board || Promise.reject(NOT_FOUND)),
+      Member.findOne({ email: query.emailMember }, { hashpass: 0, saltpass: 0 }).exec()
+        .then(member => member || Promise.reject(NOT_FOUND))
+    ])
+      .then(([board, member]) => (
+        board.idOwner.equals(user && user.idUser) ?
+          board.updateOne({ $push: { idMembers: member._id } }).then(ok => member) :
+          Promise.reject(NOT_OWNER)
+      ))
+  ),
+  transferOwnership: (query, user) => (
+    Promise.all([
+      Board.findById(query.idBoard).exec()
+        .then(board => board || Promise.reject(NOT_FOUND)),
+      Member.findById(query.idMember).exec()
+        .then(member => member || Promise.reject(NOT_FOUND))
+    ])
+      .then(([board, member]) => (
+        board.idOwner.equals(user && user.idUser) ?
+          board.updateOne({
+            idMembers: (
+              board.idMembers
+                .filter(member => !member.equals(query.idMember))
+                .concat(user.idUser)
+            ),
+            idOwner: member.id,
+          }) : Promise.reject(NOT_OWNER)
+      ))
+  ),
+  removeOrganization: (query, user) => (
+    Board.findById(query.idBoard)
+      .exec()
+      .then(board => board ? board : Promise.reject(NOT_FOUND))
+      .then(board => (
+        board.idOwner.equals(user && user.idUser) ||
+          (user && user.idUser === query.idOrganization) ?
+          board.updateOne({ $pull: { idOrganizations: query.idOrganization } }) :
+          Promise.reject(NOT_OWNER)
+      ))
+  ),
 }
