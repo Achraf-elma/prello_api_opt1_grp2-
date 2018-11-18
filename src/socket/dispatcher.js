@@ -28,7 +28,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     // -----------------Add List to board -----------------
     case ADD_LIST_TO_BOARD:
       var idBoard = action.payload.idBoard;
-      let createdList = action.payload;
+      let createdList = {_id: action.payload.idList, ...action.payload};
 
       return listController.createInBoard({ idBoard, createdList }, user).then(resolve, reject);
 
