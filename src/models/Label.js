@@ -5,6 +5,10 @@ const LabelSchema = mongoose.Schema({
         type: String, 
         required: true
     },
+    idCard: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Card'
+    },
     idBoard: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Board'

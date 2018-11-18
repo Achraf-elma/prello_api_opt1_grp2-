@@ -22,4 +22,14 @@ const listSchema = mongoose.Schema({
     timestamps: true
 });
 
+// Duplicate the ID field.
+listSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+listSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('List', listSchema)

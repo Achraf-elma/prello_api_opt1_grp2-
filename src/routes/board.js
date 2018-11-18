@@ -6,6 +6,8 @@ const boardController = require('../controllers/board');
 const actionController = require('../controllers/action');
 const cardController = require('../controllers/card');
 const listController = require('../controllers/list');
+const labelController = require('../controllers/label');
+
 
 /**
  * @desc get one board
@@ -148,6 +150,26 @@ router.get('/:idBoard([0-9a-fA-F]{24})/members', (req, res) => {
 });
 
 /**
+ * @desc get all labels of a board,
+ * @param idBoard
+ * @code 401 if board is private and user logged out
+ * @code 403 if board is private and user isn't member
+ * @code 404 if board doesn't exist
+ */
+router.get('/:idBoard([0-9a-fA-F]{24})/labels', (req, res) => {
+  console.log("----------------ROUTE boards.js in label ")
+  let idBoard = req.params.idBoard;
+  let user = req.user;
+  labelController.findByBoard({ idBoard }, user)
+    .then(labels => res.json(labels))
+    .catch(error => error === boardController.WRONG_PARAMS ? res.status(400).json({ error }) : Promise.reject(error))
+    // .catch(error => error === labelController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    // .catch(error => error === labelController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+    // .catch(error => error === labelController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
+});
+
+/**
  * @desc upsert a board,
  * @param idBoard
  * @code 401 if user logged out
@@ -155,7 +177,7 @@ router.get('/:idBoard([0-9a-fA-F]{24})/members', (req, res) => {
  */
 router.put('/:idBoard([0-9a-fA-F]{24})', (req, res) => {
   let idBoard = req.params.idBoard;
-  let upsertBoard = req.body;
+  let upsertBoard = {_id: idBoard, ...req.body};
   let user = req.user;
   boardController.upsert({ idBoard, upsertBoard }, user)
     .then(board => res.json(board))
@@ -188,6 +210,18 @@ router.put('/:idBoard([0-9a-fA-F]{24})/member/:idMember([0-9a-fA-F]{24})', (req,
       .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
       .catch(error => console.error(error) || res.sendStatus(500));
   }
+});
+
+router.put("/:idBoard([0-9a-fA-F]{24})/organizations/:idOrganization([0-9a-fA-F]{24})", (req, res) => {
+  const idBoard = req.params.idBoard;
+  const idOrganization = req.params.idOrganization;
+  const user = req.user;
+  boardController.addOrganization({ idBoard, idOrganization }, user)
+    .then(board => res.sendStatus(204))
+    .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+    .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
 });
 
 /**

@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 // Controllers
 const boardController = require('../controllers/board');
+const organizationController = require('../controllers/organization');
 const memberController = require('../controllers/user');
 
 /**

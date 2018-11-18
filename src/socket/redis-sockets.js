@@ -18,7 +18,7 @@ const socketEvents = {
 module.exports = (httpServer) => {
   const io = socketServer(httpServer);
   
-  io.adapter(redis("redis://redis-prello:b2dd813ab56f924e2ba4de0218cd4a4f96acf19ef71dd39c64e51e8da50a732c@dokku-redis-redis-prello:6379"));
+  io.adapter(redis(process.env.REDIS_URL));
   
   io.on(socketEvents.connection, (socket) => {
 
@@ -45,6 +45,7 @@ module.exports = (httpServer) => {
       socket.on(socketEvents.dispatch, (action) => {
         console.log("Dispatch", action.type, "in room", idBoard);
         dispatcher(action, socket.credentials)
+        .then(a => console.log(a) || a )
         .then( ok => socket.to(idBoard).broadcast.emit(socketEvents.dispatch, action))
         .catch(error => console.error(error));
       });

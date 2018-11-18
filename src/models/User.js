@@ -24,6 +24,16 @@ const UserSchema = mongoose.Schema({
     _id: false
 });
 
+// Duplicate the ID field.
+UserSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+UserSchema.set('toJSON', {
+    virtuals: true
+});
+
 /** PASSWORD **/
 const SALT_LENGTH = 32;
 const HASH_ROUND = 100;
@@ -31,6 +41,7 @@ const HASH_LENGTH = 128;
 UserSchema.methods.setPassword = function (password) {
     this.saltpass = crypto.randomBytes(SALT_LENGTH).toString('hex');
     this.hashpass = crypto.pbkdf2Sync(password, this.saltpass, HASH_ROUND, HASH_LENGTH, `sha512`).toString(`hex`);
+    console.log("------------HASHH ", this)
     return this;
 };
 

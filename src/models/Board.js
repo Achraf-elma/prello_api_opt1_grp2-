@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const boardSchema = mongoose.Schema({
-    description: String,
+    desc: String,
     name: {
         type: String, 
     },
@@ -10,6 +10,21 @@ const boardSchema = mongoose.Schema({
         default: [],
         ref: 'User'
     }],
+    labelNames: {
+        type : Object,
+        default : {
+            "green": "todo",
+            "yellow": "",
+            "orange": "",
+            "red": "",
+            "purple": "",
+            "blue": "",
+            "sky": "",
+            "lime": "",
+            "pink": "",
+            "black": ""
+          }
+    },
     idOrganizations: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Organization'

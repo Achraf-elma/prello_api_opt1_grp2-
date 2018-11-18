@@ -100,6 +100,13 @@ router.get('/{id}/members}', (req, res) => {
   res.send('id/members');
 });
 
+/**
+ * Get the members on a given card
+ */
+router.get('/{id}/members}', (req, res) => {
+  res.send('id/members');
+});
+
 
 
 /*************************** PUT ***************************/

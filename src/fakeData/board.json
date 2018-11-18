@@ -2,7 +2,7 @@
     {
         "_id": "b1b1b0b1b1b0b1b1b0b1b1b0",
         "name": "Board 1",
-        "description": "This is Board 1",
+        "desc": "This is Board 1",
         "idMembers": ["e1e1e0e1e1e0e1e1e0e1e1e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
         "idOrganizations": ["d1d1d0d1d1d0d1d1d0d1d1d0"],
         "isPublic": true,
@@ -12,7 +12,7 @@
     {
         "_id": "b2b2b0b2b2b0b2b2b0b2b2b0",
         "name": "Board 2",
-        "description": "This is Board 2",
+        "desc": "This is Board 2",
         "idMembers": ["e1e1e0e1e1e0e1e1e0e1e1e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
         "idOrganizations": ["d1d1d0d1d1d0d1d1d0d1d1d0"],
         "isPublic": false,
@@ -22,7 +22,7 @@
     {
         "_id": "b3b3b0b3b3b0b3b3b0b3b3b0",
         "name": "Board 1",
-        "description": "This is Board 1",
+        "desc": "This is Board 1",
         "idMembers": ["e1e1e0e1e1e0e1e1e0e1e1e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
         "idOrganizations": ["d1d1d0d1d1d0d1d1d0d1d1d0"],
         "isPublic": true,
@@ -32,7 +32,7 @@
     {
         "_id": "b4b4b0b4b4b0b4b4b0b4b4b0",
         "name": "Board 1",
-        "description": "This is Board 1",
+        "desc": "This is Board 1",
         "idMembers": ["e1e1e0e1e1e0e1e1e0e1e1e0","e2e2e0e2e2e0e2e2e0e2e2e0"],
         "idOrganizations": ["d1d1d0d1d1d0d1d1d0d1d1d0"],
         "isPublic": false,
