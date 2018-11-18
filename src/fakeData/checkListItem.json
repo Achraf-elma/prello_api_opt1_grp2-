@@ -2,21 +2,21 @@
     {
         "_id": "cece10cece10cece10cece10",
         "name": "Check list item 1",
-        "isChecked": true
+        "completed": true
     },
     {
         "_id": "ccece00cece00cece00cece02",
         "name": "Check list item 2",
-        "isChecked": false
+        "completed": false
     },
     {
         "_id": "ccece00cece00cece00cece03",
         "name": "Check list item 3",
-        "isChecked": false
+        "completed": false
     },
     {
         "_id": "ccece00cece00cece00cece04",
         "name": "Check list item 4",
-        "isChecked": false
+        "completed": false
     }
 ]

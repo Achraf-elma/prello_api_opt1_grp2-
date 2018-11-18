@@ -5,6 +5,7 @@ const seeder = require('./seeder.js');
 const User = require( '../models/User'); 
 const Board = require('../models/Board');
 const List = require('../models/List');
+const CheckList = require('../models/CheckList');
 
 const crypto = require('crypto');
 
@@ -15,7 +16,8 @@ const crypto = require('crypto');
 mongoose.connect(process.env.MONGO_URL, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
-    seeder.seed().then((err) => console.log("seeders"));
+    //seeder.seed().then((err) => console.log("seeders"));
+
   })
   .catch((err) => {
       console.error(err);
