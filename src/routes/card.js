@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cardController = require('../controllers/card')
+const commentController = require('../controllers/comment')
 
 /*************************** GET ***************************/
 
@@ -77,6 +78,13 @@ router.get('/{id}/checklists', (req, res) => {
   res.send('id/checklists');
 });
 
+/**
+ * Get the card(s) for a given card
+ */
+router.get('/{id}/comments', (req, res) => {
+  res.send('id/comments');
+});
+
 
 /**
  * Get a specific checkItem on a card
@@ -92,6 +100,7 @@ router.get('/{id}/checkItem/{idCheckItem}', (req, res) => {
 router.get('/{id}/list}', (req, res) => {
   res.send('id/list');
 });
+
 
 /**
  * Get the members on a given card
@@ -233,6 +242,25 @@ router.post('/{id}/idLabels/{idLabel}', (req, res) => {
  */
 router.post('/{id}/idMembers/{idMember}', (req, res) => {
   res.send('Remove a member from a card');
+});
+
+/**
+ * @desc get all comments of a card,
+ * @param idCard
+ * @code 401 if board is private and user logged out
+ * @code 403 if board is private and user isn't member
+ * @code 404 if board doesn't exist
+ */
+router.get('/:idCard([0-9a-fA-F]{24})/comments', (req, res) => {
+  let idCard = req.params.idCard;
+  let user = req.user;
+  commentController.findByCard({ idCard }, user)
+    .then(comment => res.json(comment))
+    // .catch(error => error === boardController.WRONG_PARAMS ? res.status(400).json({ error }) : Promise.reject(error))
+    // .catch(error => error === cardController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
+    // .catch(error => error === cardController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
+    // .catch(error => error === cardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+    .catch(error => console.error(error) || res.sendStatus(500));
 });
 
 module.exports=router;

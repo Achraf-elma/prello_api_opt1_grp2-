@@ -92,7 +92,5 @@ module.exports = {
       .then(list => { 
         list.isClosed = query.newValue ;
         list.save();
-      })),
-        
-        
+      })), 
       }
