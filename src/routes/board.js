@@ -77,24 +77,6 @@ router.get('/:idBoard([0-9a-fA-F]{24})/cards', (req, res) => {
 });
 
 /**
- * @desc get all checkLists of a board,
- * @param idBoard
- * @code 401 if board is private and user logged out
- * @code 403 if board is private and user isn't member
- * @code 404 if board doesn't exist
- */
-// router.get('/:idBoard([0-9a-fA-F]{24})/checklists', (req, res) => {
-//   let idBoard = req.params.idBoard;
-//   let user = req.user;
-//   checkListController.findByBoard({ idBoard }, user)
-//     .then(actions => res.json(actions))
-//     .catch(error => error === checkListController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
-//     .catch(error => error === checkListController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
-//     .catch(error => error === checkListController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
-//     .catch(error => console.error(error) || res.sendStatus(500));
-// });
-
-/**
  * @desc get all lists of a board,
  * @param idBoard
  * @code 401 if board is private and user logged out
@@ -113,22 +95,6 @@ router.get('/:idBoard([0-9a-fA-F]{24})/lists', (req, res) => {
     .catch(error => console.error(error) || res.sendStatus(500));
 });
 
-/**
- * @desc get all boards of a user,
- * @param idUser
- * @code 401 if board is private and user logged out
- * @code 403 if board is private and user isn't member
- * @code 404 if board doesn't exist
- */
-/*router.get('/', (req, res) => {
-    let user = req.user;
-    boardController.findByUser({ user }, boards)
-      .then(boards => res.json(boards))
-      .catch(error => error === listController.IS_PRIVATE && !user ? res.status(401).json({ error }) : Promise.reject(error))
-      .catch(error => error === listController.IS_PRIVATE && user ? res.status(403).json({ error }) : Promise.reject(error))
-      .catch(error => error === listController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
-      .catch(error => console.error(error) || res.sendStatus(500));
-  });*/
 
 /**
  * @desc get members of a board,
@@ -288,7 +254,7 @@ router.delete('/:idBoard([0-9a-fA-F]{24})', (req, res) => {
  * @code 403 if user isn't board owner
  * @code 404 if board doesn't exist
  */
-router.delete('/:idBoard([0-9a-fA-F]{24})/member/:idMember([0-9a-fA-F]{24})', (req, res) => {
+router.delete('/:idBoard([0-9a-fA-F]{24})/members/:idMember([0-9a-fA-F]{24})', (req, res) => {
   let idBoard = req.params.idBoard;
   let idMember = req.params.idMember;
   let user = req.user;
@@ -296,7 +262,7 @@ router.delete('/:idBoard([0-9a-fA-F]{24})/member/:idMember([0-9a-fA-F]{24})', (r
     res.sendStatus(401);
   } else {
     boardController.removeMember({idBoard, idMember}, user)
-      .then(board => res.status(204))
+      .then(board => res.sendStatus(204))
       .catch(error => error === boardController.WRONG_PARAMS ? res.status(400).json({ error }) : Promise.reject(error))
       .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
       .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
@@ -305,4 +271,68 @@ router.delete('/:idBoard([0-9a-fA-F]{24})/member/:idMember([0-9a-fA-F]{24})', (r
   }
 });
 
+router.post('/:idBoard([0-9a-fA-F]{24})/members', (req, res) => {
+  let idBoard = req.params.idBoard;
+  let emailMember = req.body.emailMember;
+  let user = req.user;
+  if (!user) {
+    res.sendStatus(401);
+  } else {
+    boardController.addMember({ idBoard, emailMember }, user)
+      .then(member => res.json(member))
+      .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+  }
+});
+
+router.post('/:idBoard([0-9a-fA-F]{24})/members/:idMember([0-9a-fA-F]{24})/owner', (req, res) => {
+  let idBoard = req.params.idBoard;
+  let idMember = req.params.idMember;
+  let user = req.user;
+  if (!user) {
+    res.sendStatus(401);
+  } else {
+    boardController.transferOwnership({ idBoard, idMember }, user)
+      .then(member => res.sendStatus(204))
+      .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+  }
+});
+
+
+router.post('/:idBoard([0-9a-fA-F]{24})/organizations/:idOrganization([0-9a-fA-F]{24})', (req, res) => {
+  let idBoard = req.params.idBoard;
+  let idOrganization = req.params.idOrganization;
+  let user = req.user;
+  if (!user) {
+    res.sendStatus(401);
+  } else {
+    boardController.addOrganization({ idBoard, idOrganization }, user)
+      .then(organization => res.json(organization))
+      .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+  }
+});
+router.delete('/:idBoard([0-9a-fA-F]{24})/organizations/:idOrganization([0-9a-fA-F]{24})', (req, res) => {
+  let idBoard = req.params.idBoard;
+  let idOrganization = req.params.idOrganization;
+  let user = req.user;
+  if (!user) {
+    res.sendStatus(401);
+  } else {
+    boardController.removeOrganization({ idBoard, idOrganization }, user)
+      .then(board => res.sendStatus(204))
+      .catch(error => error === boardController.WRONG_PARAMS ? res.status(400).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_OWNER && !user ? res.status(401).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_OWNER && user ? res.status(403).json({ error }) : Promise.reject(error))
+      .catch(error => error === boardController.NOT_FOUND ? res.status(404).json({ error }) : Promise.reject(error))
+      .catch(error => console.error(error) || res.sendStatus(500));
+  }
+});
 module.exports = router;

@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const boardSchema = mongoose.Schema({
     desc: String,
     name: {
-        type: String, 
+        type: String,
     },
     idMembers: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         default: [],
         ref: 'User'
     }],
     labelNames: {
-        type : Object,
-        default : {
+        type: Object,
+        default: {
             "green": "todo",
             "yellow": "",
             "orange": "",
@@ -23,10 +23,10 @@ const boardSchema = mongoose.Schema({
             "lime": "",
             "pink": "",
             "black": ""
-          }
+        }
     },
     idOrganizations: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Organization'
     }],
     isPublic: {
@@ -38,19 +38,19 @@ const boardSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    isClosed: { 
-        type: Boolean, 
+    isClosed: {
+        type: Boolean,
         default: false
     },
 },
-{
-    timestamps: true
-});
+    {
+        timestamps: true
+    });
 
-boardSchema.methods.isUserAllowed = function(idUser){
+boardSchema.methods.isUserAllowed = function (idUser) {
     return (
         this.isPublic ||
-        this.idMembers.includes(idUser) ||
+        this.idMembers.find(member => member.equals(idUser) || member._id.equals(idUser)) ||
         this.idOwner.equals(idUser)
     );
 };

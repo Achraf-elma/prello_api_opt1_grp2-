@@ -28,7 +28,7 @@ router.get('/:idMember([0-9a-fA-F]{24})', (req, res) => {
     let idMember = req.params.idMember;
     let user = req.user;
     if( !user ) {
-      res.sendStatus(401)
+      res.sendStatus(401);
     } else if ( user.idUser !== idMember ) {
       res.sendStatus(403)
     } else {
