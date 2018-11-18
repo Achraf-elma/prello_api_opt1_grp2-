@@ -7,6 +7,7 @@ const seeder = require('../db/seeder.js');
 const listController = require("../controllers/list");
 const actionController = require('../controllers/action');
 const cardController = require('../controllers/card');
+const boardController = require('../controllers/board');
 
 
 /*************************** GET ***************************/
@@ -126,6 +127,17 @@ router.post('/:idList/moveAllCards', (req, res) => {
 });
 
 
-
+/**
+ * Get lists of a user
+ */
+router.get('/:idMember([0-9a-fA-F]{24})/lists', (req,res) => {
+    let idMember = req.params.idMember;
+    let user = req.user;
+    listController.findByMember( {idMember}, user)
+    .then(data => res.json(data))
+    .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error))
+    .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
+});
+  
 
 module.exports = router;

@@ -13,6 +13,7 @@ require('./user');*/
 
 const List = require('../models/List');
 const Board = require('../models/Board');
+const boardController = require('./board.js');
 // Errors
 const IS_PRIVATE = "user cannot see target board";
 const NOT_FOUND = "No board match given id";
@@ -93,6 +94,13 @@ module.exports = {
         list.isClosed = query.newValue ;
         list.save();
       })),
+
+    findByMember: (query, user) => (
+      Board.find({$or:[{idOwner: query.idMember},{idMembers: query.idMember}]})
+      .catch(error => Promise.reject(error.name === "CastError") ? boardController.WRONG_PARAMS : error)
+      .catch(error => Promise.reject(error.name === "ValidationError" ? boardController.WRONG_PARAMS : error))
+      .then(data => List.find({idBoard: {$in: data.map(x => x._id)}}).exec())
+    ),
         
         
       }

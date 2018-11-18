@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const data = require('../fakeData/data.json');
 const seeder = require('./seeder.js');
 const User = require( '../models/User'); 
+const Board = require('../models/Board');
+const List = require('../models/List');
+
 const crypto = require('crypto');
 
 
@@ -12,11 +15,11 @@ const crypto = require('crypto');
 mongoose.connect(process.env.MONGO_URL, { /*promiseLibrary: require('bluebird'),*/ useNewUrlParser: true})
   .then(() => {
     console.log('Successfully connected to MongoDB database.')
-    seeder.seed();
+    seeder.seed().then((err) => console.log("seeders"));
   })
   .catch((err) => {
       console.error(err);
       console.log('Something is wrong with the connection to MongoDB.')
-    });
+    })
 
 module.exports = mongoose;
