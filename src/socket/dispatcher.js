@@ -119,7 +119,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     case SET_CARD_CLOSED:
     console.log('SET NAME TO CARD', action)
     var idCard = action.payload.id;
-    var newValue = action.payload.idClosed;
+    var newValue = action.payload.isClosed;
     return cardController.updateCardClosed({ idCard, newValue }).then(resolve, reject);
     
     // -----------------SET CARD DUECOMPLETE -----------------
@@ -127,7 +127,7 @@ const dispatcher = (action, user) => new Promise((resolve, reject) => {
     case SET_CARD_DUE_COMPLETE:
     console.log('SET CARD DUE COMPLETE', action)
     var idCard = action.payload.id;
-    var newValue = action.payload.closed;
+    var newValue = action.payload.dueComplete;
     return cardController.updateCardDueComplete({ idCard, newValue }).then(resolve, reject);
     
     case SET_CARD_LIST:
