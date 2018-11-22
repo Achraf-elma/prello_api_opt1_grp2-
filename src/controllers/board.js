@@ -52,7 +52,7 @@ module.exports = {
     Board.findById(query.idBoard)
       .exec()
       .then(board => board ? board : Promise.reject(NOT_FOUND))
-      .then(board => board.idOwner.equals(user && user.idUser) ? board.save(query.upsertBoard) : Promise.reject(NOT_OWNER))
+      .then(board => board.idOwner.equals(user && user.idUser) ? board.updateOne(query.upsertBoard) : Promise.reject(NOT_OWNER))
       .catch(error => error === NOT_FOUND ? (new Board(query.upsertBoard)).save() : Promise.reject(error))
       .catch(error => Promise.reject(error.name === "CastError" ? WRONG_PARAMS : error ))
       .catch(error => Promise.reject(error.name === "ValidationError" ? WRONG_PARAMS : error))
